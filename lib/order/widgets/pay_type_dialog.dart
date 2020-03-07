@@ -6,7 +6,7 @@ import 'package:flutter_deer/widgets/base_dialog.dart';
 import 'package:flutter_deer/widgets/load_image.dart';
 
 /// design/3订单/index.html#artboard5
-class PayTypeDialog extends StatefulWidget{
+class PayTypeDialog extends StatefulWidget {
 
   PayTypeDialog({
     Key key,
@@ -20,7 +20,7 @@ class PayTypeDialog extends StatefulWidget{
   
 }
 
-class _PayTypeDialog extends State<PayTypeDialog>{
+class _PayTypeDialog extends State<PayTypeDialog> {
 
   int _value = 0;
   var _list = ['未收款', '支付宝', '微信', '现金'];
@@ -43,9 +43,9 @@ class _PayTypeDialog extends State<PayTypeDialog>{
                   ) : null,
                 ),
               ),
-              Offstage(
-                  offstage: _value != index,
-                  child: const LoadAssetImage('order/ic_check', width: 16.0, height: 16.0)),
+              Visibility(
+                visible: _value == index,
+                child: const LoadAssetImage('order/ic_check', width: 16.0, height: 16.0)),
               Gaps.hGap16,
             ],
           ),

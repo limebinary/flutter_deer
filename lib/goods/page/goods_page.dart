@@ -19,7 +19,7 @@ class GoodsPage extends StatefulWidget {
   _GoodsPageState createState() => _GoodsPageState();
 }
 
-class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin{
+class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   List<String> _sortList = ['全部商品', '个人护理', '饮料', '沐浴洗护', '厨房用具', '休闲食品', '生鲜水果', '酒水', '家庭清洁'];
   TabController _tabController;
@@ -100,13 +100,12 @@ class _GoodsPageState extends State<GoodsPage> with SingleTickerProviderStateMix
                     return Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0, right: 8.0),
-                          child: Text(
-                            _sortList[sortIndex],
-                            style: TextStyles.textBold24,
-                          ),
+                        Gaps.hGap16,
+                        Text(
+                          _sortList[sortIndex],
+                          style: TextStyles.textBold24,
                         ),
+                        Gaps.hGap8,
                         LoadAssetImage('goods/expand', width: 16.0, height: 16.0, color: _iconColor,)
                       ],
                     );
