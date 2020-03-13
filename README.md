@@ -28,7 +28,7 @@
 * mvp模式
 * 使用`provider` (4.x 版本)做状态管理
 * 基于`dio` （3.x 版本）的网络请求封装
-* 完整的集成测试
+* 完整的集成测试、可访问性测试。
 * 支持深色模式
 * 使用`Sliver` 系列组件实现复杂滚动效果
 * 使用高德地图定位选择地址
@@ -37,7 +37,7 @@
 * 应用检查更新
 * PopupWindow
 * 扫码功能（barcode_scan插件）
-* 简易的过渡动画
+* 菜单切换动画（圆形扩散、3D翻转）
 * 侧滑删除
 * 城市选择
 * 类似京东选择城市的三级联动
@@ -58,7 +58,7 @@ iOS需要自行下载代码运行。
 
 ## 项目运行环境
 
-[![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20drive/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
+[![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
     1. Flutter version 1.12.13+hotfix.8
      
@@ -77,6 +77,24 @@ iOS需要自行下载代码运行。
 - 我在代码中有添加设计图的相对路径，可以搜索或查找到对应页面，希望对你有帮助。
 
 - 该插件3.0+版本已不适用本项目。~~FlutterJsonBeanFactory插件使用可以查看[这篇文章](https://www.jianshu.com/p/e909f3f936d6)。~~
+
+## 心得总结（推荐阅读）
+
+- [Flutter开发中的一些Tips(一)](https://weilu.blog.csdn.net/article/details/90546727)
+
+- [Flutter开发中的一些Tips(二)](https://weilu.blog.csdn.net/article/details/94849020)
+
+- [Flutter开发中的一些Tips(三)](https://weilu.blog.csdn.net/article/details/100108123)
+
+- [Flutter适配深色模式（DarkMode）](https://weilu.blog.csdn.net/article/details/102531559)
+
+- [说说Flutter中的RepaintBoundary](https://weilu.blog.csdn.net/article/details/103452637)
+
+- [说说Flutter中的Semantics](https://weilu.blog.csdn.net/article/details/103823259)
+
+- [说说Flutter中最熟悉的陌生人 —— Key](https://weilu.blog.csdn.net/article/details/104745624)
+
+- [Flutter动画曲线Curves 效果一览](https://weilu.blog.csdn.net/article/details/95632571)
     
 ## 使用到的三方库
 
@@ -128,31 +146,15 @@ iOS需要自行下载代码运行。
 
 ## 已知问题：
 
-- 1.12.13+hotfix.5 已知问题（#47270 ~~#47137~~ ~~#47462~~ ~~#47804~~ ~~#47021~~）。
-
 - ListView在没有设置分割线的情况下，个别Item之间存在大约1像素的间隔（[像素对齐问题](https://github.com/flutter/flutter/issues/14288)）。
 
 - 在iOS手机上开启深色模式时，[无法将状态栏文字修改为黑色](https://github.com/flutter/flutter/issues/41067)。
 
+- 1.12.13+hotfix.5 已知问题（~~#47270~~ ~~#47635~~ ~~#47137~~ ~~#47462~~ ~~#47804~~ ~~#47021~~）。
+
 - 1.9.1已支持，使用`keyboardType: TextInputType.visiblePassword`即可。~~输入框在不设置`obscureText`属性的情况下(false)，[无法弹出密码模式键盘](https://github.com/flutter/flutter/issues/31738)，可暂时使用`BlacklistingTextInputFormatter`去除可能会输入的中文。~~
 
 - 1.12.13已修复。~~在1.9.1上，TextField在语言环境为中文时，[光标与输入文字不居中显示](https://github.com/flutter/flutter/issues/40248)，可暂时使用`textBaseline: TextBaseline.alphabetic` 处理此问提。~~
-
-## 心得及问题记录
-
-- [Flutter开发中的一些Tips(一)](https://weilu.blog.csdn.net/article/details/90546727)
-
-- [Flutter开发中的一些Tips(二)](https://weilu.blog.csdn.net/article/details/94849020)
-
-- [Flutter开发中的一些Tips(三)](https://weilu.blog.csdn.net/article/details/100108123)
-
-- [Flutter适配深色模式（DarkMode）](https://weilu.blog.csdn.net/article/details/102531559)
-
-- [说说Flutter中的RepaintBoundary](https://weilu.blog.csdn.net/article/details/103452637)
-
-- [说说Flutter中的Semantics](https://weilu.blog.csdn.net/article/details/103823259)
-
-- [Flutter动画曲线Curves 效果一览](https://weilu.blog.csdn.net/article/details/95632571)
 
 ## Thanks For
 

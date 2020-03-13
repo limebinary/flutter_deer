@@ -73,8 +73,7 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
         '暂未接单',
         style: TextStyles.textBold24,
       ),
-      Gaps.vGap16,
-      Gaps.vGap16,
+      Gaps.vGap32,
       const Text(
         '客户信息',
         style: TextStyles.textBold18,
@@ -100,11 +99,14 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
             ),
           ),
           Gaps.vLine,
-          Gaps.hGap16,
+          //Gaps.hGap16,
           Semantics(
             label: '拨打电话',
             child: GestureDetector(
-              child: const LoadAssetImage('order/icon_phone', width: 24.0, height: 24.0),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: const LoadAssetImage('order/icon_phone', width: 24.0, height: 44.0),
+              ),
               onTap: () => _showCallPhoneDialog('15000000000'),
             ),
           )
@@ -119,8 +121,7 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
           Expanded(child: Text('西安市雁塔区 鱼化寨街道唐兴路唐兴数码3楼318', maxLines: 2)),
         ],
       ),
-      Gaps.vGap16,
-      Gaps.vGap16,
+      Gaps.vGap32,
       const Text(
         '商品信息',
         style: TextStyles.textBold18,
@@ -145,8 +146,7 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
       _getGoodsInfoItem('合计', Utils.formatPrice('46.50')),
       Gaps.vGap8,
       Gaps.line,
-      Gaps.vGap16,
-      Gaps.vGap16,
+      Gaps.vGap32,
       const Text(
         '订单信息',
         style: TextStyles.textBold18,
@@ -250,8 +250,7 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
         ),
         Gaps.hGap8,
         Text('x1', style: TextStyles.textSize12),
-        Gaps.hGap16,
-        Gaps.hGap16,
+        Gaps.hGap32,
         Text(Utils.formatPrice('25'), style: TextStyles.textBold14),
       ],
     );

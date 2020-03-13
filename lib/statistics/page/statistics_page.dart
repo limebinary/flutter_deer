@@ -44,8 +44,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
         expandedHeight: 100.0,
         pinned: true,
         flexibleSpace: MyFlexibleSpaceBar(
-          background: isDark ? Container(height: 115.0, color: Colours.dark_bg_color,) : const LoadAssetImage('statistic/statistic_bg',
-            width: double.infinity,
+          background: isDark ? Container(height: 115.0, color: Colours.dark_bg_color,) : LoadAssetImage('statistic/statistic_bg',
+            width: MediaQuery.of(context).size.width,
             height: 115.0,
             fit: BoxFit.fill,
           ),
@@ -90,8 +90,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Gaps.vGap16,
-              Gaps.vGap16,
+              Gaps.vGap32,
               const Text('数据走势', style: TextStyles.textBold18),
               Gaps.vGap16,
               const _StatisticsItem('订单统计', 'sjzs', 1),
