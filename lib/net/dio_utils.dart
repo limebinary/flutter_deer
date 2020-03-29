@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_deer/common/common.dart';
 import 'package:flutter_deer/util/log_utils.dart';
-import 'package:rxdart/rxdart.dart';
 import 'base_entity.dart';
 import 'error_handle.dart';
 import 'intercept.dart';
@@ -69,7 +68,7 @@ class DioUtils {
   }) async {
     var response = await _dio.request(url, data: data, queryParameters: queryParameters, options: _checkOptions(method, options), cancelToken: cancelToken);
     try {
-      /// 集成测试无法使用 isolate
+      /// 集成测试无法使用 isolate https://github.com/flutter/flutter/issues/24703
       Map<String, dynamic> _map = Constant.isDriverTest ? parseData(response.data.toString()) : await compute(parseData, response.data.toString());
       return BaseEntity.fromJson(_map);
     } catch(e) {
@@ -128,7 +127,7 @@ class DioUtils {
     CancelToken cancelToken, Options options, bool isList : false
   }) {
     String m = _getRequestMethod(method);
-    Observable.fromFuture(_request<T>(m, url, data: params, queryParameters: queryParameters, options: options, cancelToken: cancelToken))
+    Stream.fromFuture(_request<T>(m, url, data: params, queryParameters: queryParameters, options: options, cancelToken: cancelToken))
         .asBroadcastStream()
         .listen((result) {
       if (result.code == 0) {
