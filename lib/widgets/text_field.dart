@@ -41,8 +41,8 @@ class MyTextField extends StatefulWidget {
 
 class _MyTextFieldState extends State<MyTextField> {
   bool _isShowPwd = false;
-  bool _isShowDelete;
-  bool _isClick = true;
+  bool _isShowDelete = false;
+  bool _clickable = true;
   /// 倒计时秒数
   final int _second = 30;
   /// 当前秒数
@@ -55,19 +55,24 @@ class _MyTextFieldState extends State<MyTextField> {
     /// 获取初始化值
     _isShowDelete = widget.controller.text.isEmpty;
     /// 监听输入改变  
-    widget.controller.addListener(() {
+    widget.controller.addListener(isEmpty);
+  }
+  
+  void isEmpty() {
+    bool isEmpty = widget.controller.text.isEmpty;
+    /// 状态不一样在刷新，避免重复不必要的setState
+    if (isEmpty != _isShowDelete) {
       setState(() {
-        _isShowDelete = widget.controller.text.isEmpty;
+        _isShowDelete = isEmpty;
       });
-    });
+    }
   }
   
   @override
   void dispose() {
-    _subscription?.cancel();
-    widget.controller?.removeListener(() {});
-    widget.controller?.dispose();
     super.dispose();
+    _subscription?.cancel();
+    widget.controller?.removeListener(isEmpty);
   }
 
   Future _getVCode() async {
@@ -75,12 +80,12 @@ class _MyTextFieldState extends State<MyTextField> {
     if (isSuccess != null && isSuccess) {
       setState(() {
         _currentSecond = _second;
-        _isClick = false;
+        _clickable = false;
       });
       _subscription = Stream.periodic(Duration(seconds: 1), (i) => i).take(_second).listen((i) {
         setState(() {
           _currentSecond = _second - i - 1;
-          _isClick = _currentSecond < 1;
+          _clickable = _currentSecond < 1;
         });
       });
     }
@@ -167,7 +172,7 @@ class _MyTextFieldState extends State<MyTextField> {
                 ),
               ),
               child: FlatButton(
-                onPressed: _isClick ? _getVCode : null,
+                onPressed: _clickable ? _getVCode : null,
                 textColor: themeData.primaryColor,
                 color: Colors.transparent,
                 disabledTextColor: isDark ? Colours.dark_text : Colors.white,
@@ -175,12 +180,12 @@ class _MyTextFieldState extends State<MyTextField> {
                 shape:RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(1.0),
                     side: BorderSide(
-                      color: _isClick ? themeData.primaryColor : Colors.transparent,
+                      color: _clickable ? themeData.primaryColor : Colors.transparent,
                       width: 0.8,
                     )
                 ),
                 child: Text(
-                  _isClick ? '获取验证码' : '（$_currentSecond s）',
+                  _clickable ? '获取验证码' : '（$_currentSecond s）',
                   style: TextStyle(fontSize: Dimens.font_sp12),
                 ),
               ),                
