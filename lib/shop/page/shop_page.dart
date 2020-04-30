@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/account/account_router.dart';
-import 'package:flutter_deer/mvp/base_page_state.dart';
+import 'package:flutter_deer/mvp/base_page.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/setting/setting_router.dart';
 import 'package:flutter_deer/shop/models/user_entity.dart';
+import 'package:flutter_deer/shop/iview/shop_iview.dart';
 import 'package:flutter_deer/shop/presenter/shop_presenter.dart';
 import 'package:flutter_deer/shop/provider/user_provider.dart';
 import 'package:flutter_deer/shop/shop_router.dart';
@@ -25,10 +26,10 @@ class ShopPage extends StatefulWidget {
   final bool isAccessibilityTest;
   
   @override
-  ShopPageState createState() => ShopPageState();
+  _ShopPageState createState() => _ShopPageState();
 }
 
-class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with AutomaticKeepAliveClientMixin<ShopPage> {
+class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPagePresenter>, AutomaticKeepAliveClientMixin<ShopPage> implements ShopIMvpView {
   
   var _menuTitle = ['账户流水', '资金管理', '提现账号'];
   var _menuImage = ['zhls', 'zjgl', 'txzh'];
@@ -36,9 +37,13 @@ class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with Auto
 
   UserProvider provider = UserProvider();
   
+  @override
   void setUser(UserEntity user) {
     provider.setUser(user);
   }
+
+  @override
+  bool get isAccessibilityTest => widget.isAccessibilityTest;
   
   @override
   Widget build(BuildContext context) {
@@ -215,7 +220,6 @@ class ShopPageState extends BasePageState<ShopPage, ShopPagePresenter> with Auto
   bool get wantKeepAlive => true;
 
   @override
-  ShopPagePresenter createPresenter() {
-    return ShopPagePresenter();
-  }
+  ShopPagePresenter createPresenter() => ShopPagePresenter();
+ 
 }

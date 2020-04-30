@@ -1,24 +1,18 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_deer/mvp/base_presenter.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/util/toast.dart';
 import 'package:flutter_deer/util/utils.dart';
 import 'package:flutter_deer/widgets/progress_dialog.dart';
-
-import 'base_page_presenter.dart';
 import 'mvps.dart';
 
-abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresenter> extends State<T> implements IMvpView {
+mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<T> implements IMvpView {
 
-  V presenter;
-  
-  BasePageState() {
-    presenter = createPresenter();
-    presenter.view = this;
-  }
-  
-  V createPresenter();
+  P presenter;
 
+  P createPresenter();
+  
   @override
   BuildContext getContext() {
     return context;
@@ -39,7 +33,7 @@ abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresent
     /// 避免重复弹出
     if (mounted && !_isShowDialog) {
       _isShowDialog = true;
-      try{
+      try {
         showTransparentDialog(
             context: context,
             barrierDismissible: false,
@@ -68,35 +62,34 @@ abstract class BasePageState<T extends StatefulWidget, V extends BasePagePresent
 
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
     presenter?.didChangeDependencies();
+    super.didChangeDependencies();
   }
 
   @override
   void dispose() {
-    super.dispose();
     presenter?.dispose();
+    super.dispose();
   }
 
   @override
   void deactivate() {
-    super.deactivate();
     presenter?.deactivate();
+    super.deactivate();
   }
 
   @override
   void didUpdateWidget(T oldWidget) {
+    presenter?.didUpdateWidgets<T>(oldWidget);
     super.didUpdateWidget(oldWidget);
-    didUpdateWidgets<T>(oldWidget);
   }
 
   @override
   void initState() {
-    super.initState();
+    presenter = createPresenter();
+    presenter?.view = this;
     presenter?.initState();
+    super.initState();
   }
-
-  void didUpdateWidgets<W>(W oldWidget) {
-    presenter?.didUpdateWidgets<W>(oldWidget);
-  }
+  
 }
