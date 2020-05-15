@@ -115,7 +115,7 @@ class DioUtils {
   }
 
   /// 统一处理(onSuccess返回T对象，onSuccessList返回List<T>)
-  asyncRequestNetwork<T>(Method method, String url, {
+  void asyncRequestNetwork<T>(Method method, String url, {
     Function(T t) onSuccess, 
     Function(List<T> list) onSuccessList, 
     Function(int code, String msg) onError,
@@ -146,13 +146,13 @@ class DioUtils {
     });
   }
 
-  _cancelLogPrint(dynamic e, String url) {
+  void _cancelLogPrint(dynamic e, String url) {
     if (e is DioError && CancelToken.isCancel(e)) {
       Log.e('取消请求接口： $url');
     }
   }
 
-  _onError(int code, String msg, Function(int code, String mag) onError) {
+  void _onError(int code, String msg, Function(int code, String mag) onError) {
     if (code == null) {
       code = ExceptionHandle.unknown_error;
       msg = '未知异常';

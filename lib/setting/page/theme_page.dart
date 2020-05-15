@@ -13,7 +13,7 @@ class ThemePage extends StatefulWidget {
 
 class _ThemePageState extends State<ThemePage> {
 
-  var _list = ['跟随系统', '开启', '关闭'];
+  final _list = ['跟随系统', '开启', '关闭'];
 //  StreamSubscription _subscription;
   
   @override
@@ -59,8 +59,9 @@ class _ThemePageState extends State<ThemePage> {
             return InkWell(
               onTap: () {
                 ThemeMode themeMode = index == 0 ? ThemeMode.system : (index == 1 ? ThemeMode.dark : ThemeMode.light);
-                Provider.of<ThemeProvider>(context, listen: false).setTheme(themeMode);
-                
+//                Provider.of<ThemeProvider>(context, listen: false).setTheme(themeMode);
+                /// 与上方等价，provider 4.1.0添加的拓展方法
+                context.read<ThemeProvider>().setTheme(themeMode);
 //                _subscription?.cancel();
 //                /// 主题切换动画200毫秒
 //                _subscription = Stream.value(1).delay(Duration(milliseconds: 200)).listen((_) {

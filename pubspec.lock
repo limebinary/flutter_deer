@@ -191,7 +191,7 @@ packages:
   flutter_goldens_client:
     dependency: transitive
     description:
-      path: "E:\\/flutter/packages/flutter_goldens_client"
+      path: "../../../flutter/packages/flutter_goldens_client"
       relative: true
     source: path
     version: "0.0.0"
@@ -487,7 +487,7 @@ packages:
       name: provider
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.1.0"
+    version: "4.1.1"
   pub_semver:
     dependency: transitive
     description:

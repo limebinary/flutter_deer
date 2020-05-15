@@ -32,15 +32,18 @@ class _GoodsListPageState extends State<GoodsListPage> with AutomaticKeepAliveCl
   Animation<double> _animation;
   AnimationController _controller;
   List<GoodsItemEntity> _list = [];
-
+  AnimationStatus _animationStatus = AnimationStatus.dismissed;
+  
   @override
   void initState() {
     super.initState();
     // 初始化动画控制
     _controller = AnimationController(duration: const Duration(milliseconds: 450), vsync: this);
     // 动画曲线
-    CurvedAnimation _curvedAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
-    _animation = Tween(begin: 0.0, end: 1.1).animate(_curvedAnimation);
+    var _curvedAnimation = CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
+    _animation = Tween(begin: 0.0, end: 1.1).animate(_curvedAnimation) ..addStatusListener((status) {
+      _animationStatus = status;
+    });
 
     //Item数量
     _maxPage = widget.index == 0 ? 1 : (widget.index == 1 ? 2 : 3);
@@ -54,7 +57,7 @@ class _GoodsListPageState extends State<GoodsListPage> with AutomaticKeepAliveCl
     super.dispose();
   }
 
-  List<String> _imgList = [
+  final List<String> _imgList = [
     'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3130502839,1206722360&fm=26&gp=0.jpg',
     '', // 故意使用一张无效链接，触发默认显示图片
     'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1762976310,1236462418&fm=26&gp=0.jpg',
@@ -83,9 +86,10 @@ class _GoodsListPageState extends State<GoodsListPage> with AutomaticKeepAliveCl
     });
   }
   
-  _setGoodsCount(int count) {
-    GoodsPageProvider provider = Provider.of<GoodsPageProvider>(context, listen: false);
-    provider.setGoodsCount(count);
+  void _setGoodsCount(int count) {
+//    Provider.of<GoodsPageProvider>(context, listen: false).setGoodsCount(count);
+    /// 与上方等价，provider 4.1.0添加的拓展方法
+    context.read<GoodsPageProvider>().setGoodsCount(count);
   }
 
   int _page = 1;
@@ -108,14 +112,23 @@ class _GoodsListPageState extends State<GoodsListPage> with AutomaticKeepAliveCl
           item: _list[index],
           animation: _animation,
           onTapMenu: () {
-            // 开始执行动画
-            _controller.forward(from: 0.0);
+            /// 点击其他item时，重置状态
+            if (_selectIndex != index) {
+              _animationStatus = AnimationStatus.dismissed;
+            }
+            /// 避免动画中重复执行
+            if (_animationStatus == AnimationStatus.dismissed) {
+              // 开始执行动画
+              _controller.forward(from: 0.0);
+            }
             setState(() {
               _selectIndex = index;
             });
           },
           onTapMenuClose: () {
-            _controller.reverse(from: 1.1);
+            if (_animationStatus == AnimationStatus.completed) {
+              _controller.reverse(from: 1.1);
+            }
             _selectIndex = -1;
           },
           onTapEdit: () {
@@ -140,7 +153,7 @@ class _GoodsListPageState extends State<GoodsListPage> with AutomaticKeepAliveCl
   @override
   bool get wantKeepAlive => true;
 
-  _showDeleteBottomSheet(int index) {
+  void _showDeleteBottomSheet(int index) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {

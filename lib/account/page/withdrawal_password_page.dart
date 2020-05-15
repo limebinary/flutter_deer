@@ -30,6 +30,8 @@ class _WithdrawalPasswordPageState extends State<WithdrawalPasswordPage> {
             onTap: () {
               showModalBottomSheet(
                 context: context,
+                /// 禁止拖动关闭
+                enableDrag: false,
                 /// 使用true则高度不受16分之9的最高限制
                 isScrollControlled: true,
                 builder: (_) => WithdrawalPasswordSettingDialog()
@@ -45,7 +47,7 @@ class _WithdrawalPasswordPageState extends State<WithdrawalPasswordPage> {
     );
   }
 
-  _showHintDialog() {
+  void _showHintDialog() {
     showElasticDialog(
         context: context,
         barrierDismissible: false,
@@ -64,8 +66,8 @@ class _WithdrawalPasswordPageState extends State<WithdrawalPasswordPage> {
         }
     );
   }
-  
-  _showVerifyDialog() {
+
+  void _showVerifyDialog() {
     showDialog(
       context: context,
       barrierDismissible: false,

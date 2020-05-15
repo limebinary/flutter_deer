@@ -27,14 +27,14 @@ class WithdrawalAccountItem extends StatefulWidget {
 class _WithdrawalAccountItemState extends State<WithdrawalAccountItem> with SingleTickerProviderStateMixin {
 
   AnimationController _animationController;
-  Animation _animation;
+  Animation<double> _animation;
   AnimationStatus _animationStatus = AnimationStatus.dismissed;
 
   @override
   void initState() {
     super.initState();
     _animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _animation = Tween(end: 1.0, begin: 0).animate(_animationController)
+    _animation = Tween<double>(end: 1.0, begin: 0).animate(_animationController)
       ..addStatusListener((status) {
         _animationStatus = status;
       });
@@ -114,9 +114,11 @@ class _WithdrawalAccountItemState extends State<WithdrawalAccountItem> with Sing
                 // 长按删除账号
                 onLongPress: () => widget.onLongPress(),
                 onTap: () {
+                  /// 避免动画中重复执行
                   if (_animationStatus == AnimationStatus.dismissed) {
                     _animationController.forward();
-                  } else {
+                  } 
+                  if (_animationStatus == AnimationStatus.completed) {
                     _animationController.reverse();
                   }
                 },

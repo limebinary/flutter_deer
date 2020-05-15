@@ -28,11 +28,11 @@ class GoodsItem extends StatelessWidget {
   final GoodsItemEntity item;
   final int index;
   final int selectIndex;
-  final Function onTapMenu;
-  final Function onTapEdit;
-  final Function onTapOperation;
-  final Function onTapDelete;
-  final Function onTapMenuClose;
+  final VoidCallback onTapMenu;
+  final VoidCallback onTapEdit;
+  final VoidCallback onTapOperation;
+  final VoidCallback onTapDelete;
+  final VoidCallback onTapMenuClose;
   final Animation<double> animation;
   
   @override
@@ -47,9 +47,9 @@ class GoodsItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text(
-                  '八月十五中秋月饼礼盒',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis
+                '八月十五中秋月饼礼盒',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               Gaps.vGap4,
               Row(
@@ -86,12 +86,12 @@ class GoodsItem extends StatelessWidget {
               label: '商品操作菜单',
               child: GestureDetector(
                 child: Container(
-                    key: Key('goods_menu_item_$index'),
-                    width: 44.0,
-                    height: 44.0,
-                    color: Colors.transparent,
-                    padding: const EdgeInsets.only(left: 28.0, bottom: 28.0),
-                    child: const LoadAssetImage('goods/ellipsis')
+                  key: Key('goods_menu_item_$index'),
+                  width: 44.0,
+                  height: 44.0,
+                  color: Colors.transparent,
+                  padding: const EdgeInsets.only(left: 28.0, bottom: 28.0),
+                  child: const LoadAssetImage('goods/ellipsis'),
                 ),
                 onTap: onTapMenu,
               ),
@@ -117,11 +117,11 @@ class GoodsItem extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: Divider.createBorderSide(context, width: 0.8),
-              )
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.only(right: 16.0, bottom: 16.0),
-              child: child
+              child: child,
             ),
           ),
         ),
@@ -130,7 +130,7 @@ class GoodsItem extends StatelessWidget {
     );
   }
   
-  _buildGoodsMenu(BuildContext context) {
+  Widget _buildGoodsMenu(BuildContext context) {
     return Positioned.fill(
       child: AnimatedBuilder(
         animation: animation,
@@ -145,9 +145,9 @@ class GoodsItem extends StatelessWidget {
     );
   }
 
-  _buildGoodsMenuContent(BuildContext context) {
-    bool isDark = ThemeUtils.isDark(context);
-    Color buttonColor = isDark ? Colours.dark_text : Colors.white;
+  Widget _buildGoodsMenuContent(BuildContext context) {
+    var isDark = ThemeUtils.isDark(context);
+    var buttonColor = isDark ? Colours.dark_text : Colors.white;
     return InkWell(
       onTap: onTapMenuClose,
       child: Container(
@@ -164,9 +164,9 @@ class GoodsItem extends StatelessWidget {
               ),
             ),
             textTheme: TextTheme(
-                button: TextStyle(
-                  fontSize: Dimens.font_sp16,
-                )
+              button: TextStyle(
+                fontSize: Dimens.font_sp16,
+              ),
             ),
           ),
           child: Row(
@@ -229,7 +229,7 @@ class _GoodsItemTag extends StatelessWidget {
         text,
         style: const TextStyle(
           color: Colors.white,
-          fontSize: Dimens.font_sp10
+          fontSize: Dimens.font_sp10,
         ),
       ),
     );
