@@ -11,6 +11,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:flutter_deer/home/splash_page.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_deer/localization/app_localizations.dart';
 
 void main() {
 //  debugProfileBuildsEnabled = true;
@@ -28,8 +29,9 @@ void main() {
 class MyApp extends StatelessWidget {
   
   final Widget home;
+  final ThemeData theme;
   
-  MyApp({this.home}) {
+  MyApp({this.home, this.theme}) {
     Log.init();
     final router = Router();
     Routes.configureRoutes(router);
@@ -50,12 +52,13 @@ class MyApp extends StatelessWidget {
 //              checkerboardRasterCacheImages: true,
 //              showSemanticsDebugger: true, // 显示语义视图
 //              checkerboardOffscreenLayers: true, // 检查离屏渲染
-              theme: provider.getTheme(),
+              theme: theme ?? provider.getTheme(),
               darkTheme: provider.getTheme(isDarkMode: true),
               themeMode: provider.getThemeMode(),
               home: home ?? SplashPage(),
               onGenerateRoute: Application.router.generator,
               localizationsDelegates: const [
+                AppLocalizationsDelegate(),
                 GlobalMaterialLocalizations.delegate,
                 GlobalWidgetsLocalizations.delegate,
                 GlobalCupertinoLocalizations.delegate,
