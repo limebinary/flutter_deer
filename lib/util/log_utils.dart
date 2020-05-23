@@ -25,7 +25,7 @@ class Log {
   }
 
   static void json(String msg, {String tag = tag}) {
-    if (!Constant.inProduction) {
+    if (msg != '' && !Constant.inProduction) {
       var data = convert.json.decode(msg);
       if (data is Map) {
         _printMap(data);
