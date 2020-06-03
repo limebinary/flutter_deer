@@ -8,8 +8,8 @@ import 'package:flutter_deer/goods/page/goods_size_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  
-  var map = Map<String, Widget>();
+
+  final Map<String, Widget> map = <String, Widget>{};
   map['goods_page'] = GoodsPage();
   map['goods_edit_page'] = GoodsEditPage();
   map['goods_search_page'] = GoodsSearchPage();
@@ -28,7 +28,7 @@ void main() {
         }
         await expectLater(tester, meetsGuideline(iOSTapTargetGuideline));
         handle.dispose();
-      }, skip: (name == 'goods_search_page' || name == 'goods_size_page')); // https://github.com/flutter/flutter/issues/42455
+      }, skip: name == 'goods_search_page' || name == 'goods_size_page'); // https://github.com/flutter/flutter/issues/42455
     });
   });
 

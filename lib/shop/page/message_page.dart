@@ -28,7 +28,7 @@ class _MessagePageState extends State<MessagePage> {
         child: ListView.builder(
           itemCount: 20,
           controller: _scrollController,
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 28.0),
           itemBuilder: (_, index) => _MessageItem(),
         ),
@@ -59,7 +59,7 @@ class _MessageItemState extends State<_MessageItem> {
               children: <Widget>[
                 Row(
                   children: <Widget>[
-                    Expanded(child: Text('系统通知')),
+                    const Expanded(child: Text('系统通知')),
                     Container(
                       margin: const EdgeInsets.only(right: 4.0),
                       height: 8.0,
