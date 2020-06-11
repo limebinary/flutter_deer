@@ -30,6 +30,7 @@
 * 基于`dio` （3.x 版本）的网络请求封装
 * 完整的集成测试、可访问性测试。
 * 支持深色模式
+* 本地化（感谢 @ghedwards）
 * 使用`Sliver` 系列组件实现复杂滚动效果
 * 使用高德地图定位选择地址（支持Web）
 * 输入框等部件的处理封装
@@ -60,9 +61,9 @@ iOS需要自行下载代码运行。
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 1.17.2
+    1. Flutter version 1.17.3
      
-    2. Dart version 2.8.3
+    2. Dart version 2.8.4
 
 ## 注意事项
 
@@ -74,9 +75,9 @@ iOS需要自行下载代码运行。
 
 - 由于部分插件的原因，本项目在web上支持不完善（主要为功能方面，UI问题不大）。有兴趣的可自行运行体验。
         
-- 因为页面有点多，一开始可能会导致部分页面无法找到。(可以执行集成测试命令`flutter drive --profile --target=test_driver/driver.dart` 查看功能演示)
+- 可以执行集成测试命令`flutter drive --profile --target=test_driver/driver.dart` 查看功能演示。
 
-- 我在页面注释中有添加设计图的相对路径，可以搜索或查找到对应页面，希望对你有帮助。
+- 因为页面有点多，一开始可能会导致页面无法与设计图对应上。我在代码注释中有添加设计图的相对路径，可以搜索或查找到对应页面，希望对你有帮助。
 
 - 本项目使用FlutterJsonBeanFactory插件来生成Bean。FlutterJsonBeanFactory插件使用可以查看[这篇文章](https://www.jianshu.com/p/14cbcbaa74b7)。
 
@@ -129,6 +130,7 @@ iOS需要自行下载代码运行。
 | [bezier_chart](https://github.com/aeyrium/bezier-chart)               | **曲线图表**       |
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **格式化String**   |
 | [barcode_scan](https://github.com/apptreesoftware/flutter_barcode_reader)     | **扫码功能** |
+| [intl](https://github.com/dart-lang/intl)     | **本地化** |
 
 详细内容可以参看[pubspec.yaml](https://github.com/simplezhli/flutter_deer/blob/master/pubspec.yaml)文件    
 
@@ -153,6 +155,8 @@ iOS需要自行下载代码运行。
 * [ ] Web端支持。
 
 ## 已知问题：
+
+- 1.17.0已知问题(~~#25767~~)。
 
 - ListView在没有设置分割线的情况下，个别Item之间存在大约1像素的间隔（[像素对齐问题](https://github.com/flutter/flutter/issues/14288)）。
 

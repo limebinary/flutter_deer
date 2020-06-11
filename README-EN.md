@@ -28,6 +28,7 @@ The effect of some pages is as follows:
 * Network request encapsulation based on `dio` (version 3.x)
 * Driver testing, accessibility testing.
 * Support dark mode
+* Localization（Thanks @ghedwards）  
 * Use `Sliver` series of components to achieve complex scrolling effects
 * Use amap Positioning to select address
 * Pull down to refresh + pull up to load more
@@ -56,9 +57,9 @@ iOS needs to download the code to run.
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 1.17.2
+    1. Flutter version 1.17.3
      
-    2. Dart version 2.8.3
+    2. Dart version 2.8.4
 
 ## Precautions
 
@@ -68,7 +69,7 @@ iOS needs to download the code to run.
 
 - Due to some plug-ins, this project has imperfect support on the web (mainly in terms of functionality, and UI issues are minor). Those who are interested can run the experience by themselves.
         
-- Because there are a lot of pages, some pages may not be found at the beginning. (You can execute integration test commands to `flutter drive --profile --target=test_driver/driver.dart` view function demonstrations)
+- You can execute integration test commands to `flutter drive --profile --target=test_driver/driver.dart` view function demonstrations.
 
 - I have added a relative path to the design drawings in the page notes. I can search or find the corresponding page. I hope it will help you.
 
@@ -123,6 +124,7 @@ iOS needs to download the code to run.
 | [bezier_chart](https://github.com/aeyrium/bezier-chart)               | **Bezier chart**       |
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **Format String**   |
 | [barcode_scan](https://github.com/apptreesoftware/flutter_barcode_reader)     | **Scan code** |
+| [intl](https://github.com/dart-lang/intl)     | **Localization** |
 
 For details, please refer to the [pubspec.yaml](https://github.com/simplezhli/flutter_deer/blob/master/pubspec.yaml) file.  
 
