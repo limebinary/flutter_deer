@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_deer/localization/app_localizations.dart';
+import 'package:flutter_deer/util/change_notifier_manage.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/util/toast.dart';
 import 'package:flutter_deer/util/utils.dart';
@@ -16,7 +18,7 @@ class ResetPasswordPage extends StatefulWidget {
   _ResetPasswordPageState createState() => _ResetPasswordPageState();
 }
 
-class _ResetPasswordPageState extends State<ResetPasswordPage> {
+class _ResetPasswordPageState extends State<ResetPasswordPage> with ChangeNotifierMixin<ResetPasswordPage> {
   //定义一个controller
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _vCodeController = TextEditingController();
@@ -25,28 +27,18 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   final FocusNode _nodeText2 = FocusNode();
   final FocusNode _nodeText3 = FocusNode();
   bool _clickable = false;
-  
+
   @override
-  void initState() {
-    super.initState();
-    //监听输入改变  
-    _nameController.addListener(_verify);
-    _vCodeController.addListener(_verify);
-    _passwordController.addListener(_verify);
-  }
-  
-  @override
-  void dispose() {
-    _nameController.removeListener(_verify);
-    _vCodeController.removeListener(_verify);
-    _passwordController.removeListener(_verify);
-    _nameController.dispose();
-    _vCodeController.dispose();
-    _passwordController.dispose();
-    _nodeText1.dispose();
-    _nodeText2.dispose();
-    _nodeText3.dispose();
-    super.dispose();
+  Map<ChangeNotifier, List<VoidCallback>> changeNotifier() {
+    final List<VoidCallback> callbacks = [_verify];
+    return {
+      _nameController: callbacks,
+      _vCodeController: callbacks,
+      _passwordController: callbacks,
+      _nodeText1: null,
+      _nodeText2: null,
+      _nodeText3: null,
+    };
   }
 
   void _verify() {
@@ -71,14 +63,14 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   }
   
   void _reset() {
-    Toast.show('确认......');
+    Toast.show(AppLocalizations.of(context).confirm);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBar(
-        title: '忘记密码',
+      appBar: MyAppBar(
+        title: AppLocalizations.of(context).forgotPasswordLink,
       ),
       body: MyScrollView(
         keyboardConfig: Utils.getKeyboardActionsConfig(context, <FocusNode>[_nodeText1, _nodeText2, _nodeText3]),
@@ -91,8 +83,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   List<Widget> _buildBody() {
     return <Widget>[
-      const Text(
-        '重置登录密码',
+      Text(
+        AppLocalizations.of(context).resetLoginPassword,
         style: TextStyles.textBold26,
       ),
       Gaps.vGap16,
@@ -101,7 +93,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         controller: _nameController,
         maxLength: 11,
         keyboardType: TextInputType.phone,
-        hintText: '请输入手机号',
+        hintText: AppLocalizations.of(context).inputPhoneHint,
       ),
       Gaps.vGap8,
       MyTextField(
@@ -112,7 +104,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
           return Future.value(true);
         },
         maxLength: 6,
-        hintText: '请输入验证码',
+        hintText: AppLocalizations.of(context).inputVerificationCodeHint,
       ),
       Gaps.vGap8,
       MyTextField(
@@ -121,12 +113,12 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         controller: _passwordController,
         maxLength: 16,
         keyboardType: TextInputType.visiblePassword,
-        hintText: '请输入密码',
+        hintText: AppLocalizations.of(context).inputPasswordHint,
       ),
       Gaps.vGap24,
       MyButton(
         onPressed: _clickable ? _reset : null,
-        text: '确认',
+        text: AppLocalizations.of(context).confirm,
       )
     ];
   }

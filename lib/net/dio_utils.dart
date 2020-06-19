@@ -52,8 +52,9 @@ class DioUtils {
       connectTimeout: _connectTimeout,
       receiveTimeout: _receiveTimeout,
       sendTimeout: _sendTimeout,
+      /// dio默认json解析，这里指定返回UTF8字符串，自己处理解析。（可也以自定义Transformer实现）
       responseType: ResponseType.plain,
-      validateStatus: (status) {
+      validateStatus: (_) {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
       },
@@ -85,7 +86,7 @@ class DioUtils {
     CancelToken cancelToken,
     Options options,
   }) async {
-    final Response response = await _dio.request(
+    final Response<String> response = await _dio.request<String>(
       url,
       data: data,
       queryParameters: queryParameters,
@@ -93,12 +94,17 @@ class DioUtils {
       cancelToken: cancelToken,
     );
     try {
+      final String data = response.data.toString();
       /// 集成测试无法使用 isolate https://github.com/flutter/flutter/issues/24703
-      Map<String, dynamic> _map = Constant.isDriverTest ? parseData(response.data.toString()) : await compute(parseData, response.data.toString());
-      return BaseEntity.fromJson(_map);
+      /// 使用compute条件：数据大于10KB（粗略使用10 * 1024）且当前不是集成测试（后面可能会根据Web环境进行调整）
+      /// 主要目的减少不必要的性能开销
+      final bool isCompute = !Constant.isDriverTest && data.length > 10 * 1024;
+      debugPrint('isCompute:$isCompute');
+      final Map<String, dynamic> _map = isCompute ? await compute(parseData, data) : parseData(data);
+      return BaseEntity<T>.fromJson(_map);
     } catch(e) {
-      print(e);
-      return BaseEntity(ExceptionHandle.parse_error, '数据解析错误', null);
+      debugPrint(e);
+      return BaseEntity<T>(ExceptionHandle.parse_error, '数据解析错误！', null);
     }
   }
 
@@ -116,10 +122,9 @@ class DioUtils {
     Map<String, dynamic> queryParameters,
     CancelToken cancelToken, 
     Options options, 
-    bool isList: false,
+    bool isList = false,
   }) {
-    String m = _getRequestMethod(method);
-    return _request<T>(m, url,
+    return _request<T>(method.value, url,
       data: params,
       queryParameters: queryParameters,
       options: options,
@@ -154,10 +159,9 @@ class DioUtils {
     Map<String, dynamic> queryParameters, 
     CancelToken cancelToken, 
     Options options, 
-    bool isList: false,
+    bool isList = false,
   }) {
-    String m = _getRequestMethod(method);
-    Stream.fromFuture(_request<T>(m, url,
+    Stream.fromFuture(_request<T>(method.value, url,
       data: params,
       queryParameters: queryParameters,
       options: options,
@@ -200,31 +204,6 @@ class DioUtils {
       onError(code, msg);
     }
   }
-
-  String _getRequestMethod(Method method) {
-    String m;
-    switch(method) {
-      case Method.get:
-        m = 'GET';
-        break;
-      case Method.post:
-        m = 'POST';
-        break;
-      case Method.put:
-        m = 'PUT';
-        break;
-      case Method.patch:
-        m = 'PATCH';
-        break;
-      case Method.delete:
-        m = 'DELETE';
-        break;
-      case Method.head:
-        m = 'HEAD';
-        break;
-    }
-    return m;
-  }
 }
 
 Map<String, dynamic> parseData(String data) {
@@ -238,4 +217,10 @@ enum Method {
   patch,
   delete,
   head
+}
+
+/// 使用拓展枚举替代 switch判断取值
+/// https://zhuanlan.zhihu.com/p/98545689
+extension MethodExtension on Method {
+  String get value => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'HEAD'][this.index];
 }

@@ -14,7 +14,13 @@ class MessagePage extends StatefulWidget {
 class _MessagePageState extends State<MessagePage> {
   
   final ScrollController _scrollController = ScrollController();
-  
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
