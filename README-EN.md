@@ -57,15 +57,15 @@ iOS needs to download the code to run.
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 1.20.0
+    1. Flutter version 1.20.2
      
-    2. Dart version 2.9.0
+    2. Dart version 2.9.1
 
 ## Precautions
 
 - iOS can execute commands `flutter build ios` to create `release` versions. Android can execute commands `flutter build apk` to create `release` versions.
 
-- If there is a problem with the project, you can try to find a solution in the [iOS problem summary](./iOS问题汇总.md) and [Android problem summary](./Android问题汇总.md).
+- If there is a problem with the project, you can try to find a solution in the [iOS problem summary](./doc/iOS问题汇总.md) and [Android problem summary](./doc/Android问题汇总.md).
 
 - Due to some plug-ins, this project has imperfect support on the web (mainly in terms of functionality, and UI issues are minor). Those who are interested can run the experience by themselves.
         
