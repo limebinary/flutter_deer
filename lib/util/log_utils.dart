@@ -7,7 +7,7 @@ import 'package:flutter_deer/common/common.dart';
 class Log {
 
   static const String tag = 'DEER-LOG';
-  
+
   static void init() {
     LogUtil.init(isDebug: !Constant.inProduction);
   }
@@ -26,13 +26,17 @@ class Log {
 
   static void json(String msg, {String tag = tag}) {
     if (msg != '' && !Constant.inProduction) {
-      final dynamic data = convert.json.decode(msg);
-      if (data is Map) {
-        _printMap(data);
-      } else if (data is List) {
-        _printList(data);
-      } else
-        LogUtil.v(msg, tag: tag);
+      try {
+        final dynamic data = convert.json.decode(msg);
+        if (data is Map) {
+          _printMap(data);
+        } else if (data is List) {
+          _printList(data);
+        } else
+          LogUtil.v(msg, tag: tag);
+      } catch(e) {
+        LogUtil.e(msg, tag: tag);
+      }
     }
   }
 
