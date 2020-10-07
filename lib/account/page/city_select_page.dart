@@ -28,7 +28,7 @@ class _CitySelectPageState extends State<CitySelectPage> {
     _loadData();
   }
 
-  void _loadData() async {
+  Future<void> _loadData() async {
     // 获取城市列表
     // loadString源码中有对json大小进行判断，json过大会使用compute处理，集成测试无法使用compute，所以这里修改源码单独判断处理。
     String jsonStr;
@@ -37,9 +37,9 @@ class _CitySelectPageState extends State<CitySelectPage> {
     } else {
       jsonStr = await rootBundle.loadString('assets/data/city.json');
     }
-    List list = json.decode(jsonStr);
-    list.forEach((value) {
-      _cityList.add(CityEntity().fromJson(value));
+    final List list = json.decode(jsonStr) as List;
+    list.forEach((dynamic value) {
+      _cityList.add(CityEntity().fromJson(value as Map<String, dynamic>));
     });
     SuspensionUtil.setShowSuspensionStatus(_cityList);
     _indexBarData = _cityList.map((e) {
@@ -55,7 +55,7 @@ class _CitySelectPageState extends State<CitySelectPage> {
   }
 
   /// rootBundle.loadString源码修改
-  Future<String> _loadString(String key, { bool cache = true }) async {
+  Future<String> _loadString(String key) async {
     final ByteData data = await rootBundle.load(key);
     if (data == null) {
       throw FlutterError('Unable to load asset: $key');
@@ -90,7 +90,7 @@ class _CitySelectPageState extends State<CitySelectPage> {
   }
 
   Widget _buildListItem(int index) {
-    CityEntity model = _cityList[index];
+    final CityEntity model = _cityList[index];
     return InkWell(
       onTap: () => NavigatorUtils.goBackWithParams(context, model),
       child: Container(

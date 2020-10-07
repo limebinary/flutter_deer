@@ -28,7 +28,7 @@ Future<void> main() async {
   runApp(MyApp());
   // 透明状态栏
   if (Device.isAndroid) {
-    final SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+    const SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
               },
               /// 因为使用了fluro，这里设置主要针对Web
               onUnknownRoute: (_) {
-                return MaterialPageRoute(
+                return MaterialPageRoute<void>(
                   builder: (BuildContext context) => NotFoundPage(),
                 );
               },
