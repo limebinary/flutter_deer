@@ -57,13 +57,15 @@ Android版安装包：[点击下载](https://www.pgyer.com/gYXj)，安装密码�
 
 iOS需要自行下载代码运行。
 
+Web体验地址：https://simplezhli.github.io/flutter_deer/
+
 ## 项目运行环境
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 1.22.4
+    1. Flutter version 2.0.1
      
-    2. Dart version 2.10.4
+    2. Dart version 2.12.0
 
 ## 注意事项
 
@@ -73,13 +75,15 @@ iOS需要自行下载代码运行。
 
 - 项目运行有问题可以在[iOS问题汇总](./doc/iOS问题汇总.md)、[Android问题汇总](./doc/Android问题汇总.md)中尝试寻找解决办法。
 
-- 由于部分插件的原因，本项目在web上支持不完善（主要为功能方面，UI问题不大）。有兴趣的可自行运行体验。
+- 由于部分插件的原因，本项目在Windows、macOS仅做预览（主要为原生功能方面，UI问题不大）。有兴趣的可自行运行体验。
         
 - 可以执行集成测试命令`flutter drive --target=test_driver/driver.dart` 查看功能演示。
 
 - 因为页面有点多，一开始可能会导致页面无法与设计图对应上。我在代码注释中有添加设计图的相对路径，可以搜索或查找到对应页面，希望对你有帮助。
 
 - 本项目使用FlutterJsonBeanFactory插件来生成Bean。FlutterJsonBeanFactory插件使用可以查看[这篇文章](https://www.jianshu.com/p/14cbcbaa74b7)。
+
+- Web受制于js等资源过大和部署在Github上，访问会慢一些。
 
 ## 心得总结（推荐阅读）
 
@@ -160,11 +164,13 @@ iOS需要自行下载代码运行。
 
 * [x] 添加`Semantics`（语义）
 
-* [ ] Web端支持。
+* [x] Web端支持。
+
+* [ ] 迁移到空安全。
 
 ## 已知问题：
 
-- 1.22.0已知问题(~~#67262~~ ~~#67213~~)
+- 1.22.0已知问题(~~#67262~~ ~~#67213~~ #73388)
 
 - 1.17.0已知问题(~~#25767~~ ~~#38323~~ ~~#47191~~)。
 
@@ -172,7 +178,7 @@ iOS需要自行下载代码运行。
 
 - 1.17.0已修复。~~在iOS手机上开启深色模式时，[无法将状态栏文字修改为黑色](https://github.com/flutter/flutter/issues/41067)。~~
 
-- 1.12.13已知问题（~~#47804~~ ~~#47270~~ ~~#47635~~ ~~#47137~~ ~~#47462~~ ~~#47804~~ ~~#47021~~）。
+- 1.12.13已知问题（~~#47804~~ ~~#47270~~ ~~#47635~~ ~~#47137~~ ~~#47462~~ ~~#47804~~ ~~#47021~~ ~~#39494~~）。
 
 - 1.12.13已修复。~~在1.9.1上，TextField在语言环境为中文时，[光标与输入文字不居中显示](https://github.com/flutter/flutter/issues/40248)，可暂时使用`textBaseline: TextBaseline.alphabetic` 处理此问提。~~
 

@@ -5,7 +5,7 @@ import 'package:flutter_deer/goods/widgets/goods_size_dialog.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/util/image_utils.dart';
-import 'package:flutter_deer/util/toast.dart';
+import 'package:flutter_deer/util/toast_utils.dart';
 import 'package:flutter_deer/util/other_utils.dart';
 import 'package:flutter_deer/widgets/my_app_bar.dart';
 import 'package:flutter_deer/widgets/load_image.dart';
@@ -222,7 +222,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
                       height: 16.0,
                       alignment: Alignment.center,
                       child: Text(
-                        '社区币抵扣${_goodsSizeList[index].currencyPrice}元',
+                        '金币抵扣${_goodsSizeList[index].currencyPrice}元',
                         style: const TextStyle(color: Colors.white, fontSize: Dimens.font_sp10),
                       ),
                     ),
@@ -261,7 +261,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
           NavigatorUtils.push(context, GoodsRouter.goodsSizeEditPage);
         }
       },
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.only(left: 16.0, top: 16.0),
         child: DecoratedBox(
           decoration: BoxDecoration(

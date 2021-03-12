@@ -6,7 +6,7 @@ import 'package:flutter_deer/localization/app_localizations.dart';
 import 'package:flutter_deer/util/change_notifier_manage.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/toast.dart';
+import 'package:flutter_deer/util/toast_utils.dart';
 import 'package:flutter_deer/util/other_utils.dart';
 import 'package:flutter_deer/widgets/my_app_bar.dart';
 import 'package:flutter_deer/widgets/my_button.dart';
@@ -109,7 +109,7 @@ class _SMSLoginPageState extends State<SMSLoginPage> with ChangeNotifierMixin<SM
               style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: Dimens.font_sp14),
               children: <TextSpan>[
                 TextSpan(text: AppLocalizations.of(context).register, style: TextStyle(color: Theme.of(context).errorColor)),
-                TextSpan(text: window.locale.languageCode == 'zh' ? '。' : '.'),
+                TextSpan(text: Utils.getCurrLocale() == 'zh' ? '。' : '.'),
               ],
             ),
           ),

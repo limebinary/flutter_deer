@@ -30,7 +30,7 @@ class _AccountRecordListPageState extends State<AccountRecordListPage> {
               color: ThemeUtils.getStickyHeaderColor(context),
               padding: const EdgeInsets.only(left: 16.0),
               height: 34.0,
-              child: Text('2018/06/0${index + 1}'),
+              child: Text('2021/06/0${index + 1}'),
             ),
             content: _buildItem(index),
           );
@@ -58,10 +58,12 @@ class _AccountRecordListPageState extends State<AccountRecordListPage> {
               Positioned(
                 top: 0.0,
                 right: 0.0,
-                child: Text(i.isEven ? '+10.00' : '-10.00', style: i.isEven ? TextStyle(
+                child: Text(i.isEven ? '+10.00' : '-10.00',
+                  style: i.isEven ? TextStyle(
                     color: Theme.of(context).errorColor,
-                    fontWeight: FontWeight.bold
-                ) : TextStyles.textBold14),
+                    fontWeight: FontWeight.bold,
+                  ) : TextStyles.textBold14,
+                ),
               ),
               Positioned(
                 bottom: 0.0,

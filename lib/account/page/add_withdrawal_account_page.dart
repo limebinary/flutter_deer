@@ -134,71 +134,74 @@ class _AddWithdrawalAccountPageState extends State<AddWithdrawalAccountPage> {
       context: context,
       builder: (BuildContext context) {
         const OutlinedBorder buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(0)));
+
+        final Widget content = Column(
+          children: <Widget>[
+            const Text(
+              '账号类型',
+              style: TextStyles.textBold18,
+            ),
+            Gaps.vGap16,
+            Gaps.line,
+            Expanded(
+              child: TextButton(
+                child: const Text('微信'),
+                onPressed: () {
+                  _accountType = '微信';
+                  _dialogSelect(true);
+                },
+              ),
+            ),
+            Gaps.line,
+            Expanded(
+              child: TextButton(
+                child: const Text('银行卡(对私账户)'),
+                onPressed: () {
+                  _accountType = '银行卡(对私账户)';
+                  _dialogSelect(false);
+                },
+              ),
+            ),
+            Gaps.line,
+            Expanded(
+              child: TextButton(
+                child: const Text('银行卡(对公账户)'),
+                onPressed: () {
+                  _accountType = '银行卡(对公账户)';
+                  _dialogSelect(false);
+                },
+              ),
+            ),
+          ],
+        );
+
+        final Widget decoration = Container(
+          decoration: BoxDecoration(
+            color: context.dialogBackgroundColor,
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          width: 270.0,
+          height: 190.0,
+          padding: const EdgeInsets.only(top: 24.0),
+          child: TextButtonTheme(
+            data: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                // 文字颜色
+                primary: Theme.of(context).primaryColor,
+                // 按钮大小
+                minimumSize: const Size(double.infinity, double.infinity),
+                // 修改默认圆角
+                shape: buttonShape,
+              ),
+            ),
+            child: content,
+          ),
+        );
+
         return Material(
           type: MaterialType.transparency,
           child: Center(
-            child: Container(
-              decoration: BoxDecoration(
-                color: context.dialogBackgroundColor,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              width: 270.0,
-              height: 190.0,
-              padding: const EdgeInsets.only(top: 24.0),
-              child: TextButtonTheme(
-                data: TextButtonThemeData(
-                  style: ButtonStyle(
-                    // 文字颜色
-                    foregroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor),
-                    // 按下高亮颜色
-                    shadowColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor.withOpacity(0.2)),
-                    // 按钮大小
-                    minimumSize: MaterialStateProperty.all<Size>(const Size(double.infinity, double.infinity)),
-                    // 修改默认圆角
-                    shape: MaterialStateProperty.all<OutlinedBorder>(buttonShape),
-                  )
-                ),
-                child: Column(
-                  children: <Widget>[
-                    const Text(
-                      '账号类型',
-                      style: TextStyles.textBold18,
-                    ),
-                    Gaps.vGap16,
-                    Gaps.line,
-                    Expanded(
-                      child: TextButton(
-                        child: const Text('微信'),
-                        onPressed: () {
-                          _accountType = '微信';
-                          _dialogSelect(true);
-                        },
-                      ),
-                    ),
-                    Gaps.line,
-                    Expanded(
-                      child: TextButton(
-                        child: const Text('银行卡(对私账户)'),
-                        onPressed: () {
-                          _accountType = '银行卡(对私账户)';
-                          _dialogSelect(false);
-                        },
-                      ),
-                    ),
-                    Gaps.line,
-                    Expanded(
-                      child: TextButton(
-                        child: const Text('银行卡(对公账户)'),
-                        onPressed: () {
-                          _accountType = '银行卡(对公账户)';
-                          _dialogSelect(false);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            child: decoration,
           ),
         );
       },

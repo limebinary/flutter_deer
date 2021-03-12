@@ -5,7 +5,7 @@ import 'package:flutter_deer/order/widgets/pay_type_dialog.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast.dart';
+import 'package:flutter_deer/util/toast_utils.dart';
 import 'package:flutter_deer/util/other_utils.dart';
 import 'package:flutter_deer/widgets/my_card.dart';
 
@@ -104,7 +104,7 @@ class OrderItem extends StatelessWidget {
               ),
             ),
             const Text(
-              '2018.02.05 10:00',
+              '2021.02.05 10:00',
               style: TextStyles.textSize12,
             ),
           ],
