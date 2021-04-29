@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:math';
 
@@ -11,6 +10,9 @@ import 'package:flutter_deer/widgets/my_app_bar.dart';
 import 'package:flutter_deer/widgets/click_item.dart';
 
 class AboutPage extends StatefulWidget {
+
+  const AboutPage({Key? key}) : super(key: key);
+
   @override
   _AboutPageState createState() => _AboutPageState();
 }
@@ -37,12 +39,12 @@ class _AboutPageState extends State<AboutPage> {
     return Color.fromARGB(255, red, greed, blue);
   }
 
-  Timer _countdownTimer;
+  Timer? _countdownTimer;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
       // 2s定时器
       _countdownTimer = Timer.periodic(const Duration(seconds: 2), (_) {
         // https://www.jianshu.com/p/e4106b829bff
@@ -85,7 +87,7 @@ class _AboutPageState extends State<AboutPage> {
             onTap: () => _launchWebURL('Flutter Deer', 'https://github.com/simplezhli/flutter_deer')
           ),
           ClickItem(
-            title: '作者',
+            title: '作者博客',
             onTap: () => _launchWebURL('作者博客', 'https://weilu.blog.csdn.net')
           ),
         ],

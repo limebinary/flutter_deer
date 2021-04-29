@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
@@ -7,6 +6,9 @@ import 'package:sticky_headers/sticky_headers.dart';
 
 /// design/6店铺-账户/index.html#artboard1
 class AccountRecordListPage extends StatefulWidget {
+
+  const AccountRecordListPage({Key? key}) : super(key: key);
+
   @override
   _AccountRecordListPageState createState() => _AccountRecordListPageState();
 }

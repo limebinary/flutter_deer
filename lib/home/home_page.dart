@@ -1,21 +1,19 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/demo/demo_page.dart';
 import 'package:flutter_deer/goods/page/goods_page.dart';
 import 'package:flutter_deer/home/provider/home_provider.dart';
 import 'package:flutter_deer/order/page/order_page.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/shop/page/shop_page.dart';
 import 'package:flutter_deer/statistics/page/statistics_page.dart';
-import 'package:flutter_deer/util/app_navigator.dart';
-import 'package:flutter_deer/util/device_utils.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
 import 'package:flutter_deer/widgets/double_tap_back_exit_app.dart';
 import 'package:flutter_deer/widgets/load_image.dart';
 import 'package:provider/provider.dart';
-import 'package:quick_actions/quick_actions.dart';
 
 class Home extends StatefulWidget {
+
+  const Home({Key? key}) : super(key: key);
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -24,20 +22,19 @@ class _HomeState extends State<Home> {
 
   static const double _imageSize = 25.0;
 
-  List<Widget> _pageList;
+  late List<Widget> _pageList;
   final List<String> _appBarTitles = ['订单', '商品', '统计', '店铺'];
   final PageController _pageController = PageController();
 
   HomeProvider provider = HomeProvider();
 
-  List<BottomNavigationBarItem> _list;
-  List<BottomNavigationBarItem> _listDark;
+  List<BottomNavigationBarItem>? _list;
+  List<BottomNavigationBarItem>? _listDark;
 
   @override
   void initState() {
     super.initState();
     initData();
-    initQuickActions();
   }
 
   @override
@@ -46,30 +43,11 @@ class _HomeState extends State<Home> {
     super.dispose();
   }
 
-
-  void initQuickActions() {
-    if (Device.isMobile) {
-      final QuickActions quickActions = QuickActions();
-      quickActions.initialize((String shortcutType) async {
-        if (shortcutType == 'demo') {
-          AppNavigator.push(context, DemoPage());
-        }
-      });
-
-      quickActions.setShortcutItems(<ShortcutItem>[
-        const ShortcutItem(
-          type: 'demo',
-          localizedTitle: 'Demo',
-        ),
-      ]);
-    }
-  }
-
   void initData() {
     _pageList = [
-      OrderPage(),
-      GoodsPage(),
-      StatisticsPage(),
+      const OrderPage(),
+      const GoodsPage(),
+      const StatisticsPage(),
       const ShopPage(),
     ];
   }
@@ -102,7 +80,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    return _list;
+    return _list!;
   }
 
   List<BottomNavigationBarItem> _buildDarkBottomNavigationBarItem() {
@@ -134,7 +112,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    return _listDark;
+    return _listDark!;
   }
 
   @override

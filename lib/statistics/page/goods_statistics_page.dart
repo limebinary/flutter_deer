@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -16,13 +15,15 @@ import 'package:flutter_deer/widgets/pie_chart/pie_data.dart';
 /// design/5统计/index.html#artboard11
 class GoodsStatisticsPage extends StatefulWidget {
 
+  const GoodsStatisticsPage({Key? key}) : super(key: key);
+
   @override
   _GoodsStatisticsPageState createState() => _GoodsStatisticsPageState();
 }
 
 class _GoodsStatisticsPageState extends State<GoodsStatisticsPage> {
 
-  DateTime _initialDay;
+  late DateTime _initialDay;
   int _selectedIndex = 2;
   /// false 待配货 true 已配货
   bool _type = false;

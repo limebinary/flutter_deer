@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/login/page/login_page.dart';
 import 'package:flutter_deer/login/page/register_page.dart';
@@ -18,7 +19,7 @@ void main() {
     });
 
     testWidgets('登录页按钮点击',(WidgetTester tester) async {
-      runApp(MyApp(home: LoginPage()));
+      runApp(MyApp(home: const LoginPage()));
       await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(const Key('actionName')));
@@ -33,7 +34,7 @@ void main() {
     });
 
     testWidgets('注册页测试',(WidgetTester tester) async {
-      runApp(MyApp(home: RegisterPage()));
+      runApp(MyApp(home: const RegisterPage()));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('getVerificationCode')));/// 无法成功触发事件，需要输入手机号
       
@@ -64,7 +65,7 @@ void main() {
     }, timeout: const Timeout(Duration(seconds: 30)));
 
     testWidgets('登录页测试',(WidgetTester tester) async {
-      runApp(MyApp(home: LoginPage()));
+      runApp(MyApp(home: const LoginPage()));
       await tester.pumpAndSettle();
       final Finder textField = find.byKey(const Key('phone'));
       await tester.enterText(textField, '15000000000');

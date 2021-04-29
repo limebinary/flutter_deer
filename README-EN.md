@@ -19,13 +19,13 @@ The effect of some pages is as follows:
 | ![](./preview/Screenshot_13.png)   |  ![](./preview/Screenshot_14.png)   | ![](./preview/Screenshot_15.png)  |  ![](./preview/Screenshot_17.png)  |
 | ![](./preview/Screenshot_18.png)   |  ![](./preview/Screenshot_19.png)   | ![](./preview/Screenshot_20.png)  |  ![](./preview/Screenshot_21.png)  |
 | ![](./preview/Screenshot_22.jpg)   |  ![](./preview/Screenshot_23.jpg)   | ![](./preview/Screenshot_24.jpg)  |  ![](./preview/Screenshot_25.jpg)  |
-| ![](./preview/Screenshot_26.jpg)   |  ![](./preview/Screenshot_27.jpg)   |  |  |
+| ![](./preview/Screenshot_26.jpg)   |  ![](./preview/Screenshot_27.jpg)   | ![](./preview/lottie.gif)         |  |
 
 ## Content
 
 * mvp mode
-* Use `provider`(version 4.x) for state management
-* Network request encapsulation based on `dio` (version 3.x)
+* Use `provider`(version 5.x) for state management
+* Network request encapsulation based on `dio` (version 4.x)
 * Driver testing, accessibility testing.
 * Support dark mode
 * Localization（Thanks @ghedwards）  
@@ -34,7 +34,7 @@ The effect of some pages is as follows:
 * Pull down to refresh + pull up to load more
 * Check update
 * PopupWindow
-* Scan code（barcode_scan plugin）
+* Scan code（qr_code_scanner plugin）
 * Menu switching animation (circular diffusion, 3D flip)
 * Sliding delete
 * City selection
@@ -59,15 +59,15 @@ Web：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.0.1
+    1. Flutter version 2.0.5
 
-    2. Dart version 2.12.0
+    2. Dart version 2.12.3
 
 ## Precautions
 
 - iOS can execute commands `flutter build ios` to create `release` versions. Android can execute commands `flutter build apk` to create `release` versions.
 
-- If there is a problem with the project, you can try to find a solution in the [iOS problem summary](./doc/iOS问题汇总.md) and [Android problem summary](./doc/Android问题汇总.md).
+- If there is a problem with the project, you can try to find a solution in the [iOS problem summary](./docs/iOS问题汇总.md) and [Android problem summary](./docs/Android问题汇总.md).
 
 - Due to some plug-ins, this project has imperfect support on the Windows and macOS. Those who are interested can run the experience by themselves.
         
@@ -75,7 +75,7 @@ Web：https://simplezhli.github.io/flutter_deer/
 
 - I have added a relative path to the design drawings in the page notes. I can search or find the corresponding page. I hope it will help you.
 
-- This project uses the FlutterJsonBeanFactory plugin to generate beans. 
+- This project uses the [FlutterJsonBeanFactory](https://github.com/zhangruiyu/FlutterJsonBeanFactory) plugin to generate beans.
 
 ## Summary of experience
 
@@ -100,6 +100,8 @@ Web：https://simplezhli.github.io/flutter_deer/
 - [玩玩Flutter的拖拽——实现一款万能遥控器](https://weilu.blog.csdn.net/article/details/105237677)
 
 - [玩玩Flutter Web —— 实现高德地图插件](https://weilu.blog.csdn.net/article/details/106465792)
+
+- [在GitHub Actions上进行Flutter 的测试和部署](https://weilu.blog.csdn.net/article/details/114744416)
 
 - [Flutter动画曲线Curves 效果一览](https://weilu.blog.csdn.net/article/details/95632571)
 
@@ -133,8 +135,10 @@ Web：https://simplezhli.github.io/flutter_deer/
 | [date_utils](https://github.com/apptreesoftware/date_utils)           | **Commonly used date tools** |
 | [bezier_chart](https://github.com/aeyrium/bezier-chart)               | **Bezier chart**       |
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **Format String**   |
-| [barcode_scan](https://github.com/apptreesoftware/flutter_barcode_reader)     | **Scan code** |
+| [qr_code_scanner](https://github.com/juliuscanute/qr_code_scanner)     | **Scan code** |
 | [intl](https://github.com/dart-lang/intl)     | **Localization** |
+| [vibration](https://github.com/benjamindean/flutter_vibration)     | **Vibration** |
+| [lottie](https://github.com/xvrh/lottie-flutter)     | **lottie** |
 
 For details, please refer to the [pubspec.yaml](https://github.com/simplezhli/flutter_deer/blob/master/pubspec.yaml) file.  
 
@@ -142,7 +146,9 @@ For details, please refer to the [pubspec.yaml](https://github.com/simplezhli/fl
 
 * [x] Web support.
 
-* [ ] Migrate to null-safety.
+* [x] Migrate to null-safety.
+
+* [ ] Migrate to Navigator 2.0.
 
 ## Thanks For
 
@@ -156,7 +162,7 @@ For details, please refer to the [pubspec.yaml](https://github.com/simplezhli/fl
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+       https://www.apache.org/licenses/LICENSE-2.0
 
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,

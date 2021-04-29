@@ -1,10 +1,7 @@
-
 import 'dart:ui';
 
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_deer/common/common.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
 import 'package:flutter_deer/util/toast_utils.dart';
@@ -34,32 +31,8 @@ class Utils {
     }
   }
 
-  /// 调起二维码扫描页
-  static Future<String> scan() async {
-    try {
-
-      final ScanOptions options = getCurrLocale() == 'zh' ? const ScanOptions(
-        strings: {
-          'cancel': '取消',
-          'flash_on': '开启闪光灯',
-          'flash_off': '关闭闪光灯',
-        },
-      ) : const ScanOptions();
-
-      final ScanResult result = await BarcodeScanner.scan(options: options);
-      return result.rawContent;
-    } catch (e) {
-      if (e is PlatformException) {
-        if (e.code == BarcodeScanner.cameraAccessDenied) {
-          Toast.show('没有相机权限！');
-        }
-      }
-    }
-    return null;
-  }
-
   static String formatPrice(String price, {MoneyFormat format = MoneyFormat.END_INTEGER}){
-    return MoneyUtil.changeYWithUnit(NumUtil.getDoubleByValueStr(price), MoneyUnit.YUAN, format: format);
+    return MoneyUtil.changeYWithUnit(NumUtil.getDoubleByValueStr(price) ?? 0, MoneyUnit.YUAN, format: format);
   }
 
   static KeyboardActionsConfig getKeyboardActionsConfig(BuildContext context, List<FocusNode> list) {
@@ -83,8 +56,8 @@ class Utils {
     );
   }
 
-  static String getCurrLocale() {
-    final String locale = SpUtil.getString(Constant.locale);
+  static String? getCurrLocale() {
+    final String locale = SpUtil.getString(Constant.locale)!;
     if (locale == '') {
       return window.locale.languageCode;
     }
@@ -93,11 +66,10 @@ class Utils {
 
 }
 
-
-Future<T> showElasticDialog<T>({
-  @required BuildContext context,
+Future<T?> showElasticDialog<T>({
+  required BuildContext context,
   bool barrierDismissible = true,
-  WidgetBuilder builder,
+  required WidgetBuilder builder,
 }) {
 
   return showGeneralDialog(
@@ -134,4 +106,9 @@ Widget _buildDialogTransitions(BuildContext context, Animation<double> animation
       child: child,
     ),
   );
+}
+
+/// String 空安全处理
+extension StringExtension on String? {
+  String get nullSafe => this ?? '';
 }

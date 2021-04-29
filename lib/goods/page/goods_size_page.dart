@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/goods/models/goods_size_model.dart';
 import 'package:flutter_deer/goods/widgets/goods_size_dialog.dart';
@@ -18,6 +17,9 @@ import '../goods_router.dart';
 
 /// design/4商品/index.html#artboard9
 class GoodsSizePage extends StatefulWidget {
+
+  const GoodsSizePage({Key? key}) : super(key: key);
+
   @override
   _GoodsSizePageState createState() => _GoodsSizePageState();
 }
@@ -45,27 +47,19 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
     _goodsSizeList.add(GoodsSizeModel('goods/goods_size_1', '黑色3', 10, '50.0', 2, '2', '2.5', ''));
 
     // 获取Build完成状态监听
-    WidgetsBinding.instance.addPostFrameCallback((callback) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       _showHint();
     });
   }
 
   /// design/4商品/index.html#artboard18
   void _showHint() {
-    final RenderBox hint = _hintKey.currentContext.findRenderObject() as RenderBox;
-    final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-    final a = hint.localToGlobal(Offset(50.0, hint.size.height + 150.0), ancestor: overlay);
-    final b = hint.localToGlobal(hint.size.bottomLeft(const Offset(50.0, 150.0)), ancestor: overlay);
-    final RelativeRect position = RelativeRect.fromRect(
-      Rect.fromPoints(a, b),
-      Offset.zero & overlay.size,
-    );
+    final RenderBox hint = _hintKey.currentContext!.findRenderObject()! as RenderBox;
     showPopupWindow<void>(
       context: context,
-      fullWidth: false,
       isShowBg: true,
-      position: position,
-      elevation: 0.0,
+      offset: const Offset(50.0, 150.0),
+      anchor: hint,
       child: Semantics(
         label: '弹出引导页',
         hint: '向左滑动可删除列表，点击可关闭',
@@ -130,7 +124,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
                   key: const Key('name_edit'),
                   text: TextSpan(
                     text: '先对名称进行',
-                    style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: Dimens.font_sp14),
+                    style: Theme.of(context).textTheme.subtitle2?.copyWith(fontSize: Dimens.font_sp14),
                     children: <TextSpan>[
                       TextSpan(text: '编辑', style: TextStyle(color: Theme.of(context).primaryColor)),
                     ],
@@ -146,7 +140,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
               ) : ListView.builder(
                 itemCount: _goodsSizeList.length,
                 itemExtent: 107.0,
-                itemBuilder: (_, index) => _getGoodsSizeItem(index),
+                itemBuilder: (_, index) => _buildGoodsSizeItem(index),
               ),
             ),
             Padding(
@@ -165,7 +159,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
   }
  
   /// design/4商品/index.html#artboard19
-  Widget _getGoodsSizeItem(int index) {
+  Widget _buildGoodsSizeItem(int index) {
 
     // item
     Widget widget = Row(
@@ -196,36 +190,11 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
                 children: <Widget>[
                   Offstage(
                     offstage: _goodsSizeList[index].reducePrice.isEmpty,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      margin: const EdgeInsets.only(right: 4.0),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).errorColor,
-                        borderRadius: BorderRadius.circular(2.0),
-                      ),
-                      height: 16.0,
-                      alignment: Alignment.center,
-                      child: Text(
-                        '立减${_goodsSizeList[index].reducePrice}元',
-                        style: const TextStyle(color: Colors.white, fontSize: Dimens.font_sp10),
-                      ),
-                    ),
+                    child: _buildGoodsTag(Theme.of(context).errorColor, '立减${_goodsSizeList[index].reducePrice}元'),
                   ),
                   Opacity(
                     opacity: _goodsSizeList[index].currencyPrice.isEmpty ? 0.0 : 1.0,
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        borderRadius: BorderRadius.circular(2.0),
-                      ),
-                      height: 16.0,
-                      alignment: Alignment.center,
-                      child: Text(
-                        '金币抵扣${_goodsSizeList[index].currencyPrice}元',
-                        style: const TextStyle(color: Colors.white, fontSize: Dimens.font_sp10),
-                      ),
-                    ),
+                    child: _buildGoodsTag(Theme.of(context).primaryColor, '金币抵扣${_goodsSizeList[index].currencyPrice}元'),
                   )
                 ],
               ),
@@ -256,7 +225,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
       onTap: () {
         /// 如果侧滑菜单打开，关闭侧滑菜单。否则跳转
         if (_slidableController.activeState != null) {
-          _slidableController.activeState.close();
+          _slidableController.activeState!.close();
         } else {
           NavigatorUtils.push(context, GoodsRouter.goodsSizeEditPage);
         }
@@ -303,6 +272,23 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
         ),
       ],
       child: widget
+    );
+  }
+
+  Widget _buildGoodsTag(Color color, String text) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      margin: const EdgeInsets.only(right: 4.0),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(2.0),
+      ),
+      height: 16.0,
+      alignment: Alignment.center,
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.white, fontSize: Dimens.font_sp10, height: 1.1,),
+      ),
     );
   }
 }

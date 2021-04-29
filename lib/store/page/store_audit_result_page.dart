@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
@@ -9,6 +8,9 @@ import 'package:flutter_deer/widgets/my_button.dart';
 
 /// design/2店铺审核/index.html#artboard2
 class StoreAuditResultPage extends StatefulWidget {
+
+  const StoreAuditResultPage({Key? key}) : super(key: key);
+
   @override
   _StoreAuditResultPageState createState() => _StoreAuditResultPageState();
 }

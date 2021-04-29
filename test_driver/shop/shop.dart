@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/common/common.dart';
 import 'package:flutter_deer/home/home_page.dart';
@@ -8,5 +9,5 @@ import 'package:flutter_deer/main.dart';
 void main() {
   enableFlutterDriverExtension();
   Constant.isDriverTest = true;
-  runApp(MyApp(home: Home()));
+  runApp(MyApp(home: const Home()));
 }
