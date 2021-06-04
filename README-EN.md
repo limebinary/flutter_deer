@@ -59,9 +59,9 @@ Web：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.0.5
+    1. Flutter version 2.2.0
 
-    2. Dart version 2.12.3
+    2. Dart version 2.13.0
 
 ## Precautions
 
@@ -137,6 +137,7 @@ Web：https://simplezhli.github.io/flutter_deer/
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **Format String**   |
 | [qr_code_scanner](https://github.com/juliuscanute/qr_code_scanner)     | **Scan code** |
 | [intl](https://github.com/dart-lang/intl)     | **Localization** |
+| [device_info_plus](https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus)     | **Device info** |
 | [vibration](https://github.com/benjamindean/flutter_vibration)     | **Vibration** |
 | [lottie](https://github.com/xvrh/lottie-flutter)     | **lottie** |
 

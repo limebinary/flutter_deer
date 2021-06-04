@@ -64,9 +64,9 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.0.5
+    1. Flutter version 2.2.0
      
-    2. Dart version 2.12.3
+    2. Dart version 2.13.0
 
 ## 注意事项
 
@@ -119,6 +119,8 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 - [【译】正确操作Dart中的字符串](https://weilu.blog.csdn.net/article/details/107857569)
 
 - [【译】学习Flutter中新的Navigator和Router系统](https://weilu.blog.csdn.net/article/details/108902282)
+
+- [【译】Flutter 2.2中的新功能](https://weilu.blog.csdn.net/article/details/117061293)
     
 ## 使用到的三方库
 
@@ -146,6 +148,7 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 | [sprintf](https://github.com/Naddiseo/dart-sprintf)                   | **格式化String**   |
 | [qr_code_scanner](https://github.com/juliuscanute/qr_code_scanner)     | **扫码功能** |
 | [intl](https://github.com/dart-lang/intl)     | **本地化** |
+| [device_info_plus](https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus)     | **获取设备信息** |
 | [vibration](https://github.com/benjamindean/flutter_vibration)     | **振动** |
 | [lottie](https://github.com/xvrh/lottie-flutter)     | **动画效果** |
 
@@ -161,8 +164,6 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 
 * [x] 页面添加设计图路径注释，方便寻找对应的设计图。
 
-* [x] 项目中有使用这一套框架及组件，会同步修复及优化遇到的问题。
-
 * [x] 添加集成测试。
 
 * [x] 深色模式支持。
@@ -177,7 +178,7 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 
 ## 已知存在问题：
 
-- 2.0.0 已知存在问题(#68571 #73351 #73388 #79773 #79931)
+- 2.0.0 已知存在问题(#68571 #73351 #73388 #74890 #79773 #79931)
 
 - ListView在没有设置分割线的情况下，个别Item之间存在大约1像素的间隔（[像素对齐问题](https://github.com/flutter/flutter/issues/14288)）。
 

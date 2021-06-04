@@ -1,4 +1,4 @@
-import 'package:flutter_deer/common/common.dart';
+import 'package:flutter_deer/res/constant.dart';
 import 'package:flutter_deer/generated/json/base/json_convert_content.dart';
 
 class BaseEntity<T> {
@@ -6,14 +6,14 @@ class BaseEntity<T> {
   BaseEntity(this.code, this.message, this.data);
 
   BaseEntity.fromJson(Map<String, dynamic> json) {
-    code = json[Constant.code] as int;
+    code = json[Constant.code] as int?;
     message = json[Constant.message] as String;
     if (json.containsKey(Constant.data)) {
       data = _generateOBJ<T>(json[Constant.data] as Object);
     }
   }
 
-  late int code;
+  int? code;
   late String message;
   T? data;
 

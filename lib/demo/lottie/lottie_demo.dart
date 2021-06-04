@@ -109,7 +109,7 @@ class _LottieDemoState extends State<LottieDemo> with TickerProviderStateMixin {
         accentColor: _primaryColor,
         textSelectionTheme: TextSelectionThemeData(
           selectionColor: _primaryColor.withAlpha(70),
-          selectionHandleColor: _primaryColor,
+          selectionHandleColor: _primaryColor,  // 覆盖`selectionHandleColor`不起作用 https://github.com/flutter/flutter/issues/74890
           cursorColor: _primaryColor,
         ),
       ),
@@ -206,9 +206,14 @@ class _MyTextFieldState extends State<_MyTextField> {
                 color: _textColor,
               ),
             ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: _primaryColor,
+              ),
+            ),
             suffixIcon: widget.obscureText ? IconButton(
               icon: Icon(
-                Icons.remove_red_eye,
+                _isObscure ? Icons.visibility_off : Icons.visibility,
                 color: _focusNode.hasFocus ? _primaryColor : _textColor,
               ),
               onPressed: () {

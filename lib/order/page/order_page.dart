@@ -76,7 +76,7 @@ class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixi
                 width: double.infinity,
                 child: isDark ? null : const DecoratedBox(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [Color(0xFF5793FA), Color(0xFF4647FA)]),
+                    gradient: LinearGradient(colors: [Colours.gradient_blue, Color(0xFF4647FA)]),
                   ),
                 ),
               ),
@@ -117,7 +117,6 @@ class _OrderPageState extends State<OrderPage> with AutomaticKeepAliveClientMixi
       SliverOverlapAbsorber(
         handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
         sliver: SliverAppBar(
-          leading: Gaps.empty,
           brightness: Brightness.dark,
           actions: <Widget>[
             IconButton(
