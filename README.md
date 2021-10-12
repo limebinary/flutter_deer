@@ -26,7 +26,7 @@
 ## 实现内容（已迁移到空安全）
 
 * mvp模式
-* 使用`provider` (5.x 版本)做状态管理
+* 使用`provider` (6.x 版本)做状态管理
 * 基于`dio` （4.x 版本）的网络请求封装
 * 完整的集成测试、可访问性测试。
 * 支持深色模式
@@ -64,9 +64,9 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.2.3
+    1. Flutter version 2.5.2
      
-    2. Dart version 2.13.4
+    2. Dart version 2.14.3
 
 ## 注意事项
 

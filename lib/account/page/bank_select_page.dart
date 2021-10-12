@@ -1,15 +1,15 @@
 import 'dart:convert';
 
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_deer/account/models/bank_entity.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
 import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:azlistview/azlistview.dart';
+import 'package:flutter_deer/util/theme_utils.dart';
 import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer/widgets/my_app_bar.dart';
 
 /// design/6店铺-账户/index.html#artboard33
 class BankSelectPage extends StatefulWidget {
@@ -48,9 +48,7 @@ class _BankSelectPageState extends State<BankSelectPage> {
     // 获取城市列表
     rootBundle.loadString(widget.type == 0 ? 'assets/data/bank.json' : 'assets/data/bank_2.json').then((String value) {
       final List<dynamic> list = json.decode(value) as List<dynamic>;
-      list.forEach((dynamic value) {
-        _bankList.add(BankEntity().fromJson(value as Map<String, dynamic>));
-      });
+      list.forEach(_addBank);
       SuspensionUtil.sortListBySuspensionTag(_bankList);
       SuspensionUtil.setShowSuspensionStatus(_bankList);
       _indexBarData = _bankList.map((BankEntity e) {
@@ -69,6 +67,10 @@ class _BankSelectPageState extends State<BankSelectPage> {
        
       });
     });
+  }
+
+  void _addBank(dynamic value) {
+    _bankList.add(BankEntity().fromJson(value as Map<String, dynamic>));
   }
   
   @override

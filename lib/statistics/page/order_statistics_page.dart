@@ -4,13 +4,13 @@ import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/res/resources.dart';
 import 'package:flutter_deer/statistics/widgets/selected_date.dart';
+import 'package:flutter_deer/util/date_utils.dart' as date;
 import 'package:flutter_deer/util/image_utils.dart';
 import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-import 'package:flutter_deer/widgets/my_card.dart';
 import 'package:flutter_deer/widgets/bezier_chart/bezier_chart.dart';
-import 'package:flutter_deer/util/date_utils.dart' as date;
+import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer/widgets/my_app_bar.dart';
+import 'package:flutter_deer/widgets/my_card.dart';
 
 /// design/5统计/index.html#artboard1
 /// design/5统计/index.html#artboard6
@@ -104,7 +104,6 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
 //                      ),
                       AnimatedSize(
                         child: _buildCalendar(),
-                        vsync: this,
                         curve: Curves.decelerate,
                         duration: const Duration(milliseconds: 300),
                       ),
@@ -275,11 +274,12 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
   
   List<Widget> _buildWeeks() {
     final List<Widget> widgets = [];
-    _weeks.forEach((str) {
+    void addWidget(String str) {
       widgets.add(Center(
         child: Text(str, style: Theme.of(context).textTheme.subtitle2),
       ));
-    });
+    }
+    _weeks.forEach(addWidget);
     return widgets;
   }
 
@@ -292,7 +292,8 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
       list = date.DateUtils.daysInWeek(_selectedDay);
     }
     dayWidgets.addAll(_buildWeeks());
-    list.forEach((day) {
+
+    void addButton(DateTime day) {
       dayWidgets.add(
         Center(
           child: SelectedDateButton(
@@ -311,13 +312,15 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
           ),
         ),
       );
-    });
+    }
+
+    list.forEach(addButton);
     return dayWidgets;
   }
 
   List<Widget> _builderYearCalendar() {
     final List<Widget> monthWidgets = [];
-    _monthList.forEach((month) {
+    void addButton(int month) {
       monthWidgets.add(
         Center(
           child: SelectedDateButton(
@@ -333,13 +336,15 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
           ),
         ),
       );
-    });
+    }
+    _monthList.forEach(addButton);
     return monthWidgets;
   }
   
   List<Widget> _builderWeekCalendar() {
     final List<Widget> dayWidgets = [];
-    _weeksDays.forEach((day) {
+
+    void addButton(DateTime day) {
       dayWidgets.add(
         Center(
           child: SelectedDateButton(
@@ -354,8 +359,10 @@ class _OrderStatisticsPageState extends State<OrderStatisticsPage> with TickerPr
             },
           ),
         ),
-      );       
-    });
+      );
+    }
+    _weeksDays.forEach(addButton);
     return dayWidgets;
   }
+
 }

@@ -24,7 +24,7 @@ The effect of some pages is as follows:
 ## Content
 
 * mvp mode
-* Use `provider`(version 5.x) for state management
+* Use `provider`(version 6.x) for state management
 * Network request encapsulation based on `dio` (version 4.x)
 * Driver testing, accessibility testing.
 * Support dark mode
@@ -59,9 +59,9 @@ Web：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.2.3
+    1. Flutter version 2.5.2
 
-    2. Dart version 2.13.4
+    2. Dart version 2.14.3
 
 ## Precautions
 
