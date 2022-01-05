@@ -42,7 +42,6 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              flex: 1,
               child: MyButton(
                 backgroundColor: isDark ? Colours.dark_material_bg : const Color(0xFFE1EAFA),
                 textColor: isDark ? Colours.dark_text : Colours.app_main,
@@ -53,7 +52,6 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
             ),
             Gaps.hGap16,
             Expanded(
-              flex: 1,
               child: MyButton(
                 text: '接单',
                 minHeight: 45,
@@ -166,8 +164,8 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
       body: MyScrollView(
         key: const Key('order_info'),
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        children: children,
         bottomButton: bottomMenu,
+        children: children,
       )
     );
   }
@@ -192,8 +190,8 @@ class _OrderInfoPageState extends State<OrderInfoPage> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const Padding(
-          child: LoadAssetImage('order/icon_goods', width: 56.0, height: 56.0),
           padding: EdgeInsets.only(top: 5.0),
+          child: LoadAssetImage('order/icon_goods', width: 56.0, height: 56.0),
         ),
         Gaps.hGap8,
         Expanded(

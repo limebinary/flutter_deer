@@ -125,7 +125,7 @@ class _LottieDemoState extends State<LottieDemo> with TickerProviderStateMixin {
       maxLines: 1,
       textDirection: TextDirection.ltr,
     )
-      ..layout(minWidth: 0, maxWidth: double.infinity);
+      ..layout();
     return textPainter.size.width;
   }
 }
@@ -235,4 +235,3 @@ class _MyTextFieldState extends State<_MyTextField> {
     );
   }
 }
-

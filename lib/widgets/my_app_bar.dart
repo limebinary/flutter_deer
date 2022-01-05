@@ -36,22 +36,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     final SystemUiOverlayStyle _overlayStyle = ThemeData.estimateBrightnessForColor(_backgroundColor) == Brightness.dark
         ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark;
 
-    final Widget back = isBack ? IconButton(
-      onPressed: () async {
-        FocusManager.instance.primaryFocus?.unfocus();
-        final isBack = await Navigator.maybePop(context);
-        if (!isBack) {
-          await SystemNavigator.pop();
-        }
-      },
-      tooltip: 'Back',
-      padding: const EdgeInsets.all(12.0),
-      icon: Image.asset(
-        backImg,
-        color: backImgColor ?? ThemeUtils.getIconColor(context),
-      ),
-    ) : Gaps.empty;
-
     final Widget action = actionName.isNotEmpty ? Positioned(
       right: 0.0,
       child: Theme(
@@ -73,17 +57,33 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
     ) : Gaps.empty;
 
+    final Widget back = isBack ? IconButton(
+      onPressed: () async {
+        FocusManager.instance.primaryFocus?.unfocus();
+        final isBack = await Navigator.maybePop(context);
+        if (!isBack) {
+          await SystemNavigator.pop();
+        }
+      },
+      tooltip: 'Back',
+      padding: const EdgeInsets.all(12.0),
+      icon: Image.asset(
+        backImg,
+        color: backImgColor ?? ThemeUtils.getIconColor(context),
+      ),
+    ) : Gaps.empty;
+
     final Widget titleWidget = Semantics(
       namesRoute: true,
       header: true,
       child: Container(
         alignment: centerTitle.isEmpty ? Alignment.centerLeft : Alignment.center,
         width: double.infinity,
+        margin: const EdgeInsets.symmetric(horizontal: 48.0),
         child: Text(
           title.isEmpty ? centerTitle : title,
           style: const TextStyle(fontSize: Dimens.font_sp18,),
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 48.0),
       ),
     );
     

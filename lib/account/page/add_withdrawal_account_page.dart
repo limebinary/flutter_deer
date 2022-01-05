@@ -110,14 +110,14 @@ class _AddWithdrawalAccountPageState extends State<AddWithdrawalAccountPage> {
         title: '添加账号',
       ),
       body: MyScrollView(
-        children: children,
         bottomButton: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
           child: MyButton(
             onPressed: () => NavigatorUtils.goBackWithParams(context, 'add'),
             text: '确定',
           ),
-        )
+        ),
+        children: children
       ),
     );
   }
@@ -136,7 +136,7 @@ class _AddWithdrawalAccountPageState extends State<AddWithdrawalAccountPage> {
     showElasticDialog<void>(
       context: context,
       builder: (BuildContext context) {
-        const OutlinedBorder buttonShape = RoundedRectangleBorder(borderRadius: BorderRadius.zero);
+        const OutlinedBorder buttonShape = RoundedRectangleBorder();
 
         final Widget content = Column(
           children: <Widget>[

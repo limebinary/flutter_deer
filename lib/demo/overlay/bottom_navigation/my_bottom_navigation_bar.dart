@@ -75,7 +75,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> with Tick
         color: Colors.white,
         borderRadius: BorderRadius.circular(barHeight / 2),
         boxShadow: const [
-          BoxShadow(color: Colors.grey, offset: Offset(0.0, 1.0), blurRadius: 4.0, spreadRadius: 0.0),
+          BoxShadow(color: Colors.grey, offset: Offset(0.0, 1.0), blurRadius: 4.0),
         ],
       ),
     );
@@ -89,6 +89,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> with Tick
     if (widget.isShowIndicator) {
       /// 指示器
       children.add(Positioned(
+        left: 6.0 + animation.value * itemWidth,
+        top: (barHeight - indicatorHeight) / 2,
         child: Container(
           width: indicatorHeight,
           height: indicatorHeight,
@@ -96,12 +98,10 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> with Tick
             shape: BoxShape.circle,
             color: Colors.white,
             boxShadow: [
-              BoxShadow(color: Colors.grey, offset: Offset.zero, blurRadius: 1.0, spreadRadius: 0.0),
+              BoxShadow(color: Colors.grey, blurRadius: 1.0),
             ],
           ),
         ),
-        left: 6.0 + animation.value * itemWidth,
-        top: (barHeight - indicatorHeight) / 2,
       ));
     }
 
@@ -114,6 +114,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> with Tick
       );
 
       children.add(Positioned.fromRect(
+        rect: rect,
         child: GestureDetector(
           child: Container(
             decoration: BoxDecoration(
@@ -126,7 +127,6 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> with Tick
             _selectedPosition(i);
           },
         ),
-        rect: rect,
       ));
     }
     
