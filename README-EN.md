@@ -2,6 +2,8 @@
 
 <img src="preview/logo.jpg"/>
 
+## English | [中文](README.md)
+
 This project is an exercise project for individuals to learn Flutter.
 
 Realize specific design effects by setting, modifying, combining self-contained widgets and customizing to meet the needs of daily development.
@@ -59,9 +61,9 @@ Web：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.8.0
+    1. Flutter version 2.10.0
 
-    2. Dart version 2.15.0
+    2. Dart version 2.16.0
 
 ## Precautions
 

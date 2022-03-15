@@ -2,6 +2,8 @@
 
 <img src="preview/logo.jpg"/>
 
+## [English](README-EN.md) | 中文
+
 本项目为个人学习Flutter的练习项目。
 
 通过设置、修改、组合自带部件以及自定义来实现具体的设计效果，满足日常开发的需求。
@@ -64,9 +66,9 @@ Web体验地址：https://simplezhli.github.io/flutter_deer/
 
 [![Build Status](https://github.com/simplezhli/flutter_deer/workflows/flutter_deer%20driver/badge.svg?branch=master)](https://github.com/simplezhli/flutter_deer/actions?query=workflow%3A%22flutter_deer+driver%22+branch%3Amaster)
 
-    1. Flutter version 2.8.0
+    1. Flutter version 2.10.0
      
-    2. Dart version 2.15.0
+    2. Dart version 2.16.0
 
 ## 注意事项
 
