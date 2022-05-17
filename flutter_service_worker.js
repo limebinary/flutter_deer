@@ -3,19 +3,20 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "36553baf59b65e80c5324afaaef9e881",
-"index.html": "f7347e4233e2801541620aac52c77708",
-"/": "f7347e4233e2801541620aac52c77708",
-"main.dart.js": "09ea30b1eb9fdd54a9ef525db15d5b17",
+  "version.json": "69a3f61918f547df9950b5de825a7a6f",
+"index.html": "beb26801614f568a542a0d2124b339a9",
+"/": "beb26801614f568a542a0d2124b339a9",
+"main.dart.js": "ac654290498fb75be15b88ff63b8fd1b",
+"flutter.js": "0816e65a103ba8ba51b174eeeeb2cb67",
 "favicon.png": "bfe1871cdc5a274d061bca9f260efc06",
 "icons/Icon-192.png": "f8a609a995f13600fa916e57562c693e",
 "icons/Icon-512.png": "7d80e4606a3a2f3191ba4da5642f9d75",
 "manifest.json": "3ac0a70ed4edff773afb51be5323db6c",
 "index1.html": "13196af40fbe22e31a664b544aedec0d",
 "assets/AssetManifest.json": "9ce481fa2fa315e7c02686b334865b66",
-"assets/NOTICES": "303faa136ad1f0e401a75881b6a46f67",
+"assets/NOTICES": "348762653e05998f7f75311f1bbff0a8",
 "assets/FontManifest.json": "fa660e1b9e2f9a9df483c14e9b860289",
-"assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
+"assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/assets/images/order/order_bg.png": "635477e5f2472aadf0cd0ddab421b32d",
 "assets/assets/images/order/dwc_n.png": "7af3227a13d95813d31b8aa979a0e1f5",
 "assets/assets/images/order/order_search.png": "847c377712d790558888b363cbd81ad5",
@@ -158,14 +159,17 @@ const RESOURCES = {
 "assets/assets/data/sort_0.json": "84991cd78d13adca922e531bc85ac697",
 "assets/assets/data/city.json": "e8f7263ff0b6e335b61b2287c77d7067",
 "assets/assets/data/sort_1.json": "522adb0dfc666c103dd966266859c3fa",
-"assets/assets/data/sort_2.json": "762a4a595de0c8e82c266fc703961108"
+"assets/assets/data/sort_2.json": "762a4a595de0c8e82c266fc703961108",
+"canvaskit/canvaskit.js": "c2b4e5f3d7a3d82aed024e7249a78487",
+"canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
+"canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
+"canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba"
 };
 
 // The application shell files that are downloaded before a service worker can
 // start.
 const CORE = [
-  "/",
-"main.dart.js",
+  "main.dart.js",
 "index.html",
 "assets/NOTICES",
 "assets/AssetManifest.json",
