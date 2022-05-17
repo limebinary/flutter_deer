@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_deer/res/resources.dart';
@@ -49,7 +48,7 @@ class _MyTextFieldState extends State<MyTextField> {
   final int _second = 30;
   /// 当前秒数
   late int _currentSecond;
-  StreamSubscription? _subscription;
+  StreamSubscription<dynamic>? _subscription;
 
   @override
   void initState() {
@@ -77,7 +76,7 @@ class _MyTextFieldState extends State<MyTextField> {
     super.dispose();
   }
 
-  Future _getVCode() async {
+  Future<dynamic> _getVCode() async {
     final bool isSuccess = await widget.getVCode!();
     if (isSuccess) {
       setState(() {

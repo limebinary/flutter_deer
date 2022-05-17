@@ -44,17 +44,21 @@ class _GoodsEditPageState extends State<GoodsEditPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.isScan) {
         _scan();
       }
     });
   }
 
-  void _scan() {
+  Future<void> _scan() async {
     if (Device.isMobile) {
-      NavigatorUtils.pushResult(context, GoodsRouter.qrCodeScannerPage, (Object code) {
-        _codeController.text = code.toString();
+      NavigatorUtils.unfocus();
+      // 延时保证键盘收起，否则进入扫码页会黑屏
+      Future<dynamic>.delayed(const Duration(milliseconds: 500), (){
+        NavigatorUtils.pushResult(context, GoodsRouter.qrCodeScannerPage, (Object code) {
+          _codeController.text = code.toString();
+        });
       });
     } else {
       Toast.show('当前平台暂不支持');

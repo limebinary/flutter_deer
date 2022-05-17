@@ -27,12 +27,12 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   int _status = 0;
   final List<String> _guideList = ['app_start_1', 'app_start_2', 'app_start_3'];
-  StreamSubscription? _subscription;
+  StreamSubscription<dynamic>? _subscription;
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       /// 两种初始化方案，另一种见 main.dart
       /// 两种方法各有优劣
       await SpUtil.getInstance();

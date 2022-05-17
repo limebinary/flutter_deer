@@ -24,7 +24,7 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       _overlayEntry = OverlayEntry(
         builder: (context) => _buildBottomNavigation(context),
       );
@@ -83,7 +83,7 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
           isShowIndicator: Application.navigatorObserver.list.isEmpty,
           selectedCallback: (position) {
             /// 返回主页
-            void removeRoute(Route route) {
+            void removeRoute(Route<dynamic> route) {
               Navigator.removeRoute(context, route);
             }
             Application.navigatorObserver.list.forEach(removeRoute);
