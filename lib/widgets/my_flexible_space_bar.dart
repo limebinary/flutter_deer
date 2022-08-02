@@ -25,13 +25,13 @@ class MyFlexibleSpaceBar extends StatefulWidget {
   ///
   /// Most commonly used in the [AppBar.flexibleSpace] field.
   const MyFlexibleSpaceBar({
-    Key? key,
+    super.key,
     this.title,
     this.background,
     this.centerTitle,
     this.titlePadding,
     this.collapseMode = CollapseMode.parallax,
-  }) : super(key: key);
+  });
 
   /// The primary contents of the flexible space bar when expanded.
   ///
@@ -105,8 +105,9 @@ class MyFlexibleSpaceBar extends StatefulWidget {
 
 class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
   bool _getEffectiveCenterTitle(ThemeData theme) {
-    if (widget.centerTitle != null)
+    if (widget.centerTitle != null) {
       return widget.centerTitle!;
+    }
     switch (theme.platform) {
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
@@ -120,8 +121,9 @@ class _FlexibleSpaceBarState extends State<MyFlexibleSpaceBar> {
   }
 
   Alignment _getTitleAlignment(bool effectiveCenterTitle) {
-    if (effectiveCenterTitle)
+    if (effectiveCenterTitle) {
       return Alignment.bottomCenter;
+    }
     final TextDirection textDirection = Directionality.of(context);
     switch (textDirection) {
       case TextDirection.rtl:

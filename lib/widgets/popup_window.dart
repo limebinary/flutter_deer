@@ -62,13 +62,13 @@ Future<T?> showPopupWindow<T>({
 ///自定义弹窗路由：参照_PopupMenuRoute修改的
 class _PopupWindowRoute<T> extends PopupRoute<T> {
   _PopupWindowRoute({
-    RouteSettings? settings,
+    super.settings,
     required this.child,
     required this.position,
     required this.barrierLabel,
     required this.semanticLabel,
     required this.isShowBg,
-  }) : super(settings: settings);
+  });
 
   final Widget child;
   final RelativeRect position;
@@ -137,10 +137,10 @@ class _PopupWindowRoute<T> extends PopupRoute<T> {
 ///自定义弹窗控件：对自定义的弹窗内容进行再包装，添加长宽、动画等约束条件
 class _PopupWindow<T> extends StatelessWidget {
   const _PopupWindow({
-    Key? key,
+    super.key,
     required this.route,
     required this.semanticLabel,
-  }) : super(key: key);
+  });
 
   final _PopupWindowRoute<T> route;
   final String? semanticLabel;
@@ -230,14 +230,17 @@ class _PopupWindowLayoutDelegate extends SingleChildLayoutDelegate {
 
     // Avoid going outside an area defined as the rectangle 8.0 pixels from the
     // edge of the screen in every direction.
-    if (x < _kWindowScreenPadding)
+    if (x < _kWindowScreenPadding) {
       x = _kWindowScreenPadding;
-    else if (x + childSize.width > size.width - _kWindowScreenPadding)
+    } else if (x + childSize.width > size.width - _kWindowScreenPadding) {
       x = size.width - childSize.width - _kWindowScreenPadding;
-    if (y < _kWindowScreenPadding)
+    }
+
+    if (y < _kWindowScreenPadding) {
       y = _kWindowScreenPadding;
-    else if (y + childSize.height > size.height - _kWindowScreenPadding)
+    } else if (y + childSize.height > size.height - _kWindowScreenPadding) {
       y = size.height - childSize.height - _kWindowScreenPadding;
+    }
     return Offset(x, y);
   }
 

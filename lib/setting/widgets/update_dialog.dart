@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flustars/flustars.dart';
+import 'package:flustars_flutter3/flustars_flutter3.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_deer/res/resources.dart';
@@ -16,7 +16,7 @@ import 'package:flutter_deer/widgets/my_button.dart';
 
 class UpdateDialog extends StatefulWidget {
 
-  const UpdateDialog({Key? key}) : super(key: key);
+  const UpdateDialog({super.key});
 
   @override
   _UpdateDialogState createState() => _UpdateDialogState();
