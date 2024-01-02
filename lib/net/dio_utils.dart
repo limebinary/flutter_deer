@@ -8,17 +8,17 @@ import 'base_entity.dart';
 import 'error_handle.dart';
 
 /// 默认dio配置
-int _connectTimeout = 15000;
-int _receiveTimeout = 15000;
-int _sendTimeout = 10000;
+Duration _connectTimeout = const Duration(seconds: 15);
+Duration _receiveTimeout = const Duration(seconds: 15);
+Duration _sendTimeout = const Duration(seconds: 10);
 String _baseUrl = '';
 List<Interceptor> _interceptors = [];
 
 /// 初始化Dio配置
 void configDio({
-  int? connectTimeout,
-  int? receiveTimeout,
-  int? sendTimeout,
+  Duration? connectTimeout,
+  Duration? receiveTimeout,
+  Duration? sendTimeout,
   String? baseUrl,
   List<Interceptor>? interceptors,
 }) {
@@ -29,9 +29,9 @@ void configDio({
   _interceptors = interceptors ?? _interceptors;
 }
 
-typedef NetSuccessCallback<T> = Function(T data);
-typedef NetSuccessListCallback<T> = Function(List<T> data);
-typedef NetErrorCallback = Function(int code, String msg);
+typedef NetSuccessCallback<T> = void Function(T data);
+typedef NetSuccessListCallback<T> = void Function(List<T> data);
+typedef NetErrorCallback = void Function(int code, String msg);
 
 /// @weilu https://github.com/simplezhli
 class DioUtils {
@@ -54,15 +54,13 @@ class DioUtils {
     );
     _dio = Dio(options);
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
-//    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-//        (HttpClient client) {
-//      client.findProxy = (uri) {
-//        //proxy all request to localhost:8888
-//        return 'PROXY 10.41.0.132:8888';
-//      };
-//      client.badCertificateCallback =
-//          (X509Certificate cert, String host, int port) => true;
-//    };
+   // _dio.httpClientAdapter = IOHttpClientAdapter()..onHttpClientCreate = (HttpClient client) {
+   //   client.findProxy = (uri) {
+   //     //proxy all request to localhost:8888
+   //     return 'PROXY 10.41.0.132:8888';
+   //   };
+   //   return client;
+   // };
 
     /// 添加拦截器
     void addInterceptor(Interceptor interceptor) {
@@ -171,7 +169,7 @@ class DioUtils {
   }
 
   void _cancelLogPrint(dynamic e, String url) {
-    if (e is DioError && CancelToken.isCancel(e)) {
+    if (e is DioException && CancelToken.isCancel(e)) {
       Log.e('取消请求接口： $url');
     }
   }

@@ -73,9 +73,9 @@ class _StatisticsPageState extends State<StatisticsPage> {
               margin: const EdgeInsets.symmetric(horizontal: 16.0),
               alignment: Alignment.center,
               height: 120.0,
-              child: MyCard(
+              child: const MyCard(
                 child: Row(
-                  children: const <Widget>[
+                  children: <Widget>[
                     _StatisticsTab('新订单(单)', 'xdd', '80'),
                     _StatisticsTab('待配送(单)', 'dps', '80'),
                     _StatisticsTab('今日交易额(元)', 'jrjye', '8000.00'),
@@ -87,12 +87,12 @@ class _StatisticsPageState extends State<StatisticsPage> {
           , 120.0,
         ),
       ),
-      SliverToBoxAdapter(
+      const SliverToBoxAdapter(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const <Widget>[
+            children: <Widget>[
               Gaps.vGap32,
               Text('数据走势', style: TextStyles.textBold18),
               Gaps.vGap16,
@@ -172,7 +172,7 @@ class _StatisticsTab extends StatelessWidget {
           children: <Widget>[
             LoadAssetImage('statistic/$img', width: 40.0, height: 40.0),
             Gaps.vGap4,
-            Text(title, style: Theme.of(context).textTheme.subtitle2),
+            Text(title, style: Theme.of(context).textTheme.titleSmall),
             Gaps.vGap8,
             Text(content, style: const TextStyle(fontSize: Dimens.font_sp18)),
           ],

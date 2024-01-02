@@ -39,8 +39,6 @@ class _OrderTrackPageState extends State<OrderTrackPage> {
           Stepper(
             physics: const BouncingScrollPhysics(),
             currentStep: 4 - 1,
-            // flutter 2.8.0以下使用：
-            // controlsBuilder: (_, {onStepContinue, onStepCancel}) {
             controlsBuilder: (_, __) {
               return Gaps.empty; //操作按钮置空
             },
@@ -62,15 +60,14 @@ class _OrderTrackPageState extends State<OrderTrackPage> {
         child: Text(_titleList[index], style: index == 0 ? TextStyle(
           fontSize: Dimens.font_sp14,
           color: primaryColor,
-        ) : Theme.of(context).textTheme.bodyText2),
+        ) : Theme.of(context).textTheme.bodyMedium),
       ),
       subtitle: Text(_timeList[index], style: index == 0 ? TextStyle(
         fontSize: Dimens.font_sp12,
         color: primaryColor,
-      ) : Theme.of(context).textTheme.subtitle2),
+      ) : Theme.of(context).textTheme.titleSmall),
       content: const Text(''),
       isActive: index == 0,
-      // TODO(weilu): 这里的状态图标无法修改，暂时使用原生的。应该可以复制Step代码修改一下。
       state: index == 0 ? StepState.complete : StepState.indexed, 
     );
   }

@@ -29,7 +29,7 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
         builder: (context) => _buildBottomNavigation(context),
       );
       /// 添加悬浮
-      Overlay.of(context)?.insert(_overlayEntry!);
+      Overlay.of(context).insert(_overlayEntry!);
     });
   }
   
@@ -47,7 +47,7 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
       appBar: AppBar(
         title: const Text('Overlay Demo'),
       ),
-      body: Container(
+      body: ColoredBox(
         color: Colors.amber,
         child: Center(
           child: GestureDetector(

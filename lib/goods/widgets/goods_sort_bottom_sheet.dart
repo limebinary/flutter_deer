@@ -18,7 +18,7 @@ class GoodsSortBottomSheet extends StatefulWidget {
     required this.onSelected,
   });
 
-  final Function(String, String) onSelected;
+  final void Function(String, String) onSelected;
   /// 临时状态
   final GoodsSortProvider provider;
   
@@ -63,7 +63,7 @@ class GoodsSortBottomSheetState extends State<GoodsSortBottomSheet> with SingleT
                 children: <Widget>[
                   child!,
                   Gaps.line,
-                  Container(
+                  ColoredBox(
                     // 隐藏点击效果
                     color: context.dialogBackgroundColor,
                     child: TabBar(

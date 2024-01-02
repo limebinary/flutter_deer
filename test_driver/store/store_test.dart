@@ -24,6 +24,7 @@ void main() {
     
     test('店铺审核资料页测试',() async {
       await driver.tap(find.text('主营范围'));
+      await delayed();
       final SerializableFinder sortList = find.byValueKey('goods_sort');
       await delayed();
       
@@ -34,11 +35,13 @@ void main() {
 
       await delayed();
       await driver.tap(find.text('提交'));
+      await delayed();
     });
 
     test('审核结果页测试',() async {
       await delayed();
       await driver.tap(find.text('进入'));
+      await delayed();
     });
   });
 }
